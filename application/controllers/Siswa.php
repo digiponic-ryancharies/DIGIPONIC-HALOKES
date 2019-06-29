@@ -1,12 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ekstrakurikuler extends CI_Controller {
+class Siswa extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("M_session");
+        $this->load->model("M_siswa");
     }
 
-    function index() {
+    function aktif() {
         $session = $this->M_session->get_session();
         if (!$session['session_userid'] && !$session['session_status']) {
             /*$data['message'] = "<p>The page you requested was not found.</p>";
@@ -19,7 +20,7 @@ class Ekstrakurikuler extends CI_Controller {
             ];
 
             if($session['session_status'] == "guru") {
-                $url = site_url().'/api/ekskul/all';
+                $url = site_url().'/api/siswa/aktif/all';
                 
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
@@ -31,14 +32,13 @@ class Ekstrakurikuler extends CI_Controller {
                 $res = json_decode($response);
 
                 if($res->status == true) {
-                    $data['ekskul'] = $res->data;
+                    $data['siswa'] = $res->siswa;
                 } else {
-                    $data['ekskul'] = [];
+                    $data['siswa'] = [];
                 }
 
-
                 $this->load->view("template/kurikulum_header", $data);
-                $this->load->view("kurikulum/ekskul", $data);
+                $this->load->view("kurikulum/siswa_aktif", $data);
                 $this->load->view("template/kurikulum_footer");
             } else if($session['session_status'] == "siswa") {
 
@@ -48,13 +48,7 @@ class Ekstrakurikuler extends CI_Controller {
         }
     }
 
-    function detail() {
-    	$this->load->view("template/kurikulum_header");
-    	$this->load->view("kurikulum/ekskul_detail");
-		$this->load->view("template/kurikulum_footer");
-    }
-
-    function tambah_ekskul() {
+    function tambah_siswa_aktif() {
         $session = $this->M_session->get_session();
         if (!$session['session_userid'] && !$session['session_status']) {
             /*$data['message'] = "<p>The page you requested was not found.</p>";
@@ -68,12 +62,20 @@ class Ekstrakurikuler extends CI_Controller {
 
             if($session['session_status'] == "guru") {
                 $data = [
+                    'tapel' => $this->input->post('tahun'),
                     'nama' => $this->input->post('nama'),
-                    'deskripsi' => $this->input->post('deskripsi'),
-                    'jadwal' => implode(', ',$this->input->post('jadwal'))
+                    'nisn' => $this->input->post('nisn'),
+                    'nis' => $this->input->post('nis'),
+                    'tempat_lhr' => $this->input->post('tempat'),
+                    'tanggal_lhr' => $this->input->post('tanggal'),
+                    'jk' => $this->input->post('jk'),
+                    'alamat' => $this->input->post('alamat'),
+                    'nohp' => $this->input->post('nohp'),
+                    'email' => $this->input->post('email'),
+                    'agama' => $this->input->post('agama')
                 ];
 
-                $url = site_url().'/api/ekskul/tambah';
+                $url = site_url().'/api/siswa/tambah/aktif';
 
                 $ch = curl_init($url);
                 curl_setopt($ch, CURLOPT_POST, true);
@@ -85,13 +87,11 @@ class Ekstrakurikuler extends CI_Controller {
 
                 $res = json_decode($response);
 
-                $this->session->set_flashdata('do', "tambah_ekskul");
+                $this->session->set_flashdata('do', "tambah_siswa");
                 $this->session->set_flashdata('status', $res->status);
                 $this->session->set_flashdata('msg', $res->message);
-                redirect("ekstrakurikuler");
-            } else if($session['session_status'] == "siswa") {
-
-            } else if($session['session_status'] == "ortu") {
+                redirect('siswa/aktif');
+            } else {
 
             }
         }

@@ -1,5 +1,5 @@
 <?php
-class m_auth extends CI_Model {
+class M_auth extends CI_Model {
 	public function __construct() {
 		parent::__construct();
 		$this->load->database();
@@ -17,7 +17,10 @@ class m_auth extends CI_Model {
 							  		FROM tbl_master_siswa tms WHERE tms.siswa_username='$user' ANd tms.siswa_password='$pass'
 							  		UNION
 							  		SELECT tso.id_siswa_ortu_url AS id, tso.ortu_username AS username, tso.ortu_password AS password, '3' AS status 
-							 		FROM tbl_siswa_ortu tso WHERE tso.ortu_username='$user' AND tso.ortu_password='$pass'");
+							 		FROM tbl_siswa_ortu tso WHERE tso.ortu_username='$user' AND tso.ortu_password='$pass'
+							 		UNION
+							 		SELECT tmp.id_pegawai_url AS id, tmp.pegawai_username AS username, tmp.pegawai_password AS password, '4' AS status
+							 		FROM tbl_master_pegawai tmp WHERE tmp.pegawai_username='$user' AND tmp.pegawai_password='$pass'");
 			$res = $db->row();
 
 			$user_db = $res->username;
@@ -34,6 +37,9 @@ class m_auth extends CI_Model {
 					$data['status'] = TRUE;
 				} else if($stts_db == 3) {
 					$data['value'] = ["id_user" => $id, "username" => $user, "password" => $pass, "role" => "ortu"];
+					$data['status'] = TRUE;
+				} else if($stts_db == 4) {
+					$data['value'] = ["id_user" => $id, "username" => $user, "password" => $pass, "role" => "pegawai"];
 					$data['status'] = TRUE;
 				} else {
 					$data['value'] = "";

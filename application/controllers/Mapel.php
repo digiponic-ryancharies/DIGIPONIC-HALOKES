@@ -1,9 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ekstrakurikuler extends CI_Controller {
+class Mapel extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("M_session");
+        $this->load->model("M_kurikulum");
     }
 
     function index() {
@@ -19,7 +20,7 @@ class Ekstrakurikuler extends CI_Controller {
             ];
 
             if($session['session_status'] == "guru") {
-                $url = site_url().'/api/ekskul/all';
+                $url = site_url().'/api/mapel/all';
                 
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
@@ -31,14 +32,15 @@ class Ekstrakurikuler extends CI_Controller {
                 $res = json_decode($response);
 
                 if($res->status == true) {
-                    $data['ekskul'] = $res->data;
+                    $data['mapel'] = $res->mapel;
+                    $data['grupkur'] = $res->grupkur;
                 } else {
-                    $data['ekskul'] = [];
+                    $data['mapel'] = [];
+                    $data['grupkur'] = [];
                 }
 
-
                 $this->load->view("template/kurikulum_header", $data);
-                $this->load->view("kurikulum/ekskul", $data);
+                $this->load->view("kurikulum/mapel", $data);
                 $this->load->view("template/kurikulum_footer");
             } else if($session['session_status'] == "siswa") {
 
@@ -48,13 +50,7 @@ class Ekstrakurikuler extends CI_Controller {
         }
     }
 
-    function detail() {
-    	$this->load->view("template/kurikulum_header");
-    	$this->load->view("kurikulum/ekskul_detail");
-		$this->load->view("template/kurikulum_footer");
-    }
-
-    function tambah_ekskul() {
+    function tambah_mapel() {
         $session = $this->M_session->get_session();
         if (!$session['session_userid'] && !$session['session_status']) {
             /*$data['message'] = "<p>The page you requested was not found.</p>";
@@ -68,12 +64,13 @@ class Ekstrakurikuler extends CI_Controller {
 
             if($session['session_status'] == "guru") {
                 $data = [
+                    'kurikulum' => $this->input->post('kurikulum'),
+                    'gmapel' => $this->input->post('grupmapel'),
                     'nama' => $this->input->post('nama'),
-                    'deskripsi' => $this->input->post('deskripsi'),
-                    'jadwal' => implode(', ',$this->input->post('jadwal'))
+                    'kkm' => $this->input->post('kkm')
                 ];
 
-                $url = site_url().'/api/ekskul/tambah';
+                $url = site_url().'/api/mapel/tambah';
 
                 $ch = curl_init($url);
                 curl_setopt($ch, CURLOPT_POST, true);
@@ -85,15 +82,18 @@ class Ekstrakurikuler extends CI_Controller {
 
                 $res = json_decode($response);
 
-                $this->session->set_flashdata('do', "tambah_ekskul");
+                $this->session->set_flashdata('do', "tambah_mapel");
                 $this->session->set_flashdata('status', $res->status);
                 $this->session->set_flashdata('msg', $res->message);
-                redirect("ekstrakurikuler");
-            } else if($session['session_status'] == "siswa") {
-
-            } else if($session['session_status'] == "ortu") {
+                redirect('mapel');
+            } else {
 
             }
         }
+    }
+
+    function get_gmapel_by_grupkur($id) {
+        $res = $this->M_kurikulum->getGrupMapelByGrupKur($id);
+        echo json_encode($res->result());
     }
 }

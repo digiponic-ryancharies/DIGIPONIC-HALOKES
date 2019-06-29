@@ -1,0 +1,28 @@
+CHANGELOG
+
+19 Juni 2019
+- Layout ekstrakurikuler dan tambah ekskul
+- Layout data guru pengajar
+- Layout login
+- API login
+
+21 Juni 2019
+- API ekstrakurikuler bagian tampil dan tambah
+- Layout presensi KBM
+- Layout presensi Ekstrakurikuler
+- Layout grup kurikulum
+- Layout grup mata pelajaran
+- Layout mata pelajaran
+
+22 Juni 2019
+- API grup kurikulum bagian tampil dan tambah
+- API grup mata pelajaran bagian tampil dan tambah
+- API mata pelajaran bagian tampil dan tambah
+
+26 Juni 2019
+- Layout + API siswa aktif bagian tampil dan tambah
+
+29 Juni 2019
+- Layout data kelas dan tambah kelas
+- Layout dashboard user kepegawaian
+- Layout data guru dan tambah guru

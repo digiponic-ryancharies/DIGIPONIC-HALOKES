@@ -53,5 +53,8 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['api/kontak/all'] = 'api/kontak/all';
-$route['kontak/all'] = 'kontak/getKontak';
+// Contoh Syntax ===> $route['pinginmu_url_e_yok_opo'] = 'jeneng_function_sing_arep_kok_dor';
+
+// API Route
+$route['api/siswa/aktif/all'] = 'api/siswa/aktif_all';
+$route['api/siswa/tambah/aktif'] = 'api/siswa/tambah_aktif';

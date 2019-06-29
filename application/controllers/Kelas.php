@@ -1,9 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ekstrakurikuler extends CI_Controller {
+class Kelas extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("M_session");
+        //$this->load->model("M_siswa");
     }
 
     function index() {
@@ -19,7 +20,7 @@ class Ekstrakurikuler extends CI_Controller {
             ];
 
             if($session['session_status'] == "guru") {
-                $url = site_url().'/api/ekskul/all';
+                $url = site_url().'/api/kelas/all';
                 
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
@@ -31,14 +32,13 @@ class Ekstrakurikuler extends CI_Controller {
                 $res = json_decode($response);
 
                 if($res->status == true) {
-                    $data['ekskul'] = $res->data;
+                    $data['kelas'] = $res->kelas;
                 } else {
-                    $data['ekskul'] = [];
+                    $data['kelas'] = [];
                 }
 
-
                 $this->load->view("template/kurikulum_header", $data);
-                $this->load->view("kurikulum/ekskul", $data);
+                $this->load->view("kurikulum/kelas", $data);
                 $this->load->view("template/kurikulum_footer");
             } else if($session['session_status'] == "siswa") {
 
@@ -48,13 +48,7 @@ class Ekstrakurikuler extends CI_Controller {
         }
     }
 
-    function detail() {
-    	$this->load->view("template/kurikulum_header");
-    	$this->load->view("kurikulum/ekskul_detail");
-		$this->load->view("template/kurikulum_footer");
-    }
-
-    function tambah_ekskul() {
+    function tambah_kelas() {
         $session = $this->M_session->get_session();
         if (!$session['session_userid'] && !$session['session_status']) {
             /*$data['message'] = "<p>The page you requested was not found.</p>";
@@ -68,12 +62,12 @@ class Ekstrakurikuler extends CI_Controller {
 
             if($session['session_status'] == "guru") {
                 $data = [
-                    'nama' => $this->input->post('nama'),
-                    'deskripsi' => $this->input->post('deskripsi'),
-                    'jadwal' => implode(', ',$this->input->post('jadwal'))
+                    'tingkat' => $this->input->post('tingkat'),
+                    'abjad' => $this->input->post('abjad'),
+                    'ruang' => $this->input->post('ruang'),
                 ];
 
-                $url = site_url().'/api/ekskul/tambah';
+                $url = site_url().'/api/kelas/tambah';
 
                 $ch = curl_init($url);
                 curl_setopt($ch, CURLOPT_POST, true);
@@ -85,10 +79,10 @@ class Ekstrakurikuler extends CI_Controller {
 
                 $res = json_decode($response);
 
-                $this->session->set_flashdata('do', "tambah_ekskul");
+                $this->session->set_flashdata('do', "tambah_kelas");
                 $this->session->set_flashdata('status', $res->status);
                 $this->session->set_flashdata('msg', $res->message);
-                redirect("ekstrakurikuler");
+                redirect('kelas');
             } else if($session['session_status'] == "siswa") {
 
             } else if($session['session_status'] == "ortu") {

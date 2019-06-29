@@ -120,144 +120,37 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="header light mt-3"><strong>MENU KURIKULUM</strong></li>
+            <li class="header light mt-3"><strong>MENU KEPEGAWAIAN</strong></li>
             <li>
-                <a href="#">
+                <a href="<?php echo site_url('guru') ?>">
                 <i class="icon icon-school blue-text s-18"></i> 
-                    <span>Kegiatan Belajar Mengajar</span>
+                    <span>Data Guru</span>
                 </a>
             </li>
             <li>
-                <a href="<?php echo site_url('ekstrakurikuler') ?>">
+                <a href="#">
                 <i class="icon icon-basketball blue-text s-18"></i> 
-                    <span>Ekstrakurikuler</span>
+                    <span>Data Karyawan</span>
                 </a>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-class blue-text s-18"></i>
-                    <span>Presensi</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('presensi/kbm') ?>"><i class="icon icon-circle-o"></i>Presensi KBM</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Presensi Ekstrakurikuler</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-user-circle-o  blue-text s-18"></i>
-                    <span>Pengajar (Guru)</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('guru/pengajar') ?>"><i class="icon icon-circle-o"></i>Data Pengajar</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Silabus / RPP</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Program Semester</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-note blue-text s-18"></i>
-                    <span>Penilaian</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('penilaian/kbm') ?>"><i class="icon icon-circle-o"></i>Penilaian KBM</a></li>
-                    <li><a href="<?php echo site_url('penilaian/ekskul') ?>"><i class="icon icon-circle-o"></i>Penilaian Ekstrakurikuler</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="<?php echo site_url('raport/siswa') ?>">
-                <i class="icon icon-notebook blue-text s-18"></i> 
-                    <span>Raport Siswa</span>
-                </a>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-timelapse blue-text s-18"></i>
-                    <span>Kurikulum</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('kurikulum/grup_kurikulum') ?>"><i class="icon icon-circle-o"></i>Grup Kurikulum</a></li>
-                    <li><a href="<?php echo site_url('kurikulum/grup_mapel') ?>"><i class="icon icon-circle-o"></i>Grup Mata Pelajaran</a></li>
-                    <li><a href="<?php echo site_url('mapel') ?>"><i class="icon icon-circle-o"></i>Data Mata Pelajaran</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-cog blue-text s-18"></i>
-                    <span>Distribusi</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Atur Wali Kelas</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Atur Guru Pengajar</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Atur Pembina Ekstrakurikuler</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Atur Anggota Ekstrakurikuler</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-calendar blue-text s-18"></i>
-                    <span>Penjadwalan</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('jadwal/mapel') ?>"><i class="icon icon-circle-o"></i>Jadwal Pelajaran</a></li>
-                    <li><a href="<?php echo site_url('jadwal/ekskul') ?>"><i class="icon icon-circle-o"></i>Jadwal Ekstrakurikuler</a></li>
-                    <li><a href="<?php echo site_url('jadwal/ujian') ?>"><i class="icon icon-circle-o"></i>Jadwal Ujian</a></li>
-                    <li><a href="<?php echo site_url('jadwal/kalender_ak') ?>"><i class="icon icon-circle-o"></i>Kalender Akademik</a></li>
-                </ul>
-            </li>
-            <li class="header light mt-3"><strong>MENU KESISWAAN</strong></li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-user-circle blue-text s-18"></i>
-                    <span>Data Siswa</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('siswa/baru') ?>"><i class="icon icon-circle-o"></i>Siswa Baru</a></li>
-                    <li><a href="<?php echo site_url('siswa/aktif') ?>"><i class="icon icon-circle-o"></i>Siswa Aktif</a></li>
-                    <li><a href="<?php echo site_url('siswa/mutasi') ?>"><i class="icon icon-circle-o"></i>Siswa Mutasi</a></li>
-                    <li><a href="<?php echo site_url('siswa/alumni') ?>"><i class="icon icon-circle-o"></i>Siswa Alumni</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Kartu Pelajar</a></li>
-                </ul>
             </li>
             <li>
-                <a href="<?php echo site_url('kelas') ?>">
-                    <i class="icon icon-building-o blue-text s-18"></i>
-                    <span>Data Kelas</span>
-                </a>
-            </li>
-            <li class="treeview">
                 <a href="#">
-                    <i class="icon icon-sticky-note blue-text s-18"></i>
-                    <span>Konseling</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
+                <i class="icon icon-basketball blue-text s-18"></i> 
+                    <span>Grup Karyawan</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Poin Pelanggaran</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Pencatatan Pelanggaran</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Poin Prestasi</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Pengembangan Karakter</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Bimbingan Konseling</a></li>
-                </ul>
             </li>
-            <li class="treeview">
+            <li>
                 <a href="#">
-                    <i class="icon icon-clipboard-text blue-text s-18"></i>
-                    <span>Ujian</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
+                <i class="icon icon-basketball blue-text s-18"></i> 
+                    <span>Jadwal Piket</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Atur Ruang Ujian</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Kartu Ujian</a></li>
-                </ul>
             </li>
-            <li class="header light mt-3"><strong>MENU GURU</strong></li>
+            <li>
+                <a href="#">
+                <i class="icon icon-class blue-text s-18"></i> 
+                    <span>Presensi</span>
+                </a>
+            </li>
         </ul>
     </section>
 </aside>

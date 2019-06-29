@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class m_session extends CI_Model {
+class M_session extends CI_Model {
 	function __construct() {
 		parent::__construct();
 	}

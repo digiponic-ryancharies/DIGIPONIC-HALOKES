@@ -6,14 +6,14 @@ use Restserver\Libraries\REST_Controller;
 class Auth extends REST_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model("m_auth");
+        $this->load->model("M_auth");
     }
 
     function login_post() {
         $user = $this->post('username');
         $pass = sha1($this->post('password'));
 
-        $proc = $this->m_auth->login($user,$pass);
+        $proc = $this->M_auth->login($user,$pass);
 
     	if($proc['status'] == TRUE) {
     		$this->response([

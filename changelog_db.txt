@@ -1,0 +1,7 @@
+CHANGELOG DB
+
+22 Juni 2019
+(+) tbl_mapel_grup - field - id_mapel_kurikulum
+
+29 Juni 2019
+(+) tbl_master_pegawai - tabel

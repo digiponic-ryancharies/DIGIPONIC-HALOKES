@@ -1,23 +1,3 @@
-<?php                                    
-    date_default_timezone_get('Asia/Jakarta');
-    $dateNow = date("d-m-Y");
-    $yearNow = date("Y");
-    $month = [
-        '-- Bulan --' => 0,
-        'Januari' => 1,
-        'Februari' => 2,
-        'Maret' => 3,
-        'April' => 4,
-        'Mei' => 5,
-        'Juni' => 6,
-        'Juli' => 7,
-        'Agustus' => 8,
-        'September' => 9,
-        'Oktober' => 10,
-        "November" => 11,
-        "Desember" => 12
-    ];
-?>
 <div class="page has-sidebar-left height-full">
     <header class="blue accent-3 relative nav-sticky">
         <div class="container-fluid text-white">
@@ -196,7 +176,7 @@
                                 <form class="form-inline" id="perBulan">
                                     <label class="mr-2">Bulan</label>
                                     <select class="form-control mr-4" name="bulan">
-                                        <?php foreach($month as $key=>$value) { ?>
+                                        <?php foreach($bulanIndo as $key=>$value) { ?>
                                             <option value="<?php echo $value ?>"><?php echo $key ?></option>
                                         <?php } ?>
                                     </select>

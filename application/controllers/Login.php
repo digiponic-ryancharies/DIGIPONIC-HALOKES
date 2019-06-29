@@ -3,7 +3,7 @@
 class Login extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model("m_session");
+        $this->load->model("M_session");
     }
 
     function index() {
@@ -30,7 +30,7 @@ class Login extends CI_Controller {
     	$data = $res->data;
 
     	if($res->status == true) {
-            $this->m_session->store_session($data->id_user, $data->role);
+            $this->M_session->store_session($data->id_user, $data->role);
     		redirect("dashboard");
     	} else {
     		redirect("login");
