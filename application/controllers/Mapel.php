@@ -9,42 +9,48 @@ class Mapel extends CI_Controller {
 
     function index() {
         $session = $this->M_session->get_session();
-        if (!$session['session_userid'] && !$session['session_status']) {
+        if (!$session['session_userid'] && !$session['session_role']) {
             /*$data['message'] = "<p>The page you requested was not found.</p>";
             $this->load->view("errors/html/error_404", $data);*/
             redirect("login");
         } else {
             $data = [
                 "userid" => $session['session_userid'],
-                "userstts" => $session['session_status']
+                "userstts" => $session['session_status'],
+                "usernama" => $session['session_nama']
             ];
 
-            if($session['session_status'] == "guru") {
-                $url = site_url().'/api/mapel/all';
+            if($session['session_role'] == "guru") {
+                $data = [
+                    "header" => $this->load->view("template/guru_header", $data, TRUE),
+                    "footer" => $this->load->view("template/guru_footer", '', TRUE)
+                ];
+
+                if(strpos($session['session_status'], '1')) {
+                    $url = site_url().'/api/mapel/all';
                 
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
-                curl_close($ch);
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $response = curl_exec($ch);
+                    curl_close($ch);
 
-                $res = json_decode($response);
+                    $res = json_decode($response);
 
-                if($res->status == true) {
-                    $data['mapel'] = $res->mapel;
-                    $data['grupkur'] = $res->grupkur;
-                } else {
-                    $data['mapel'] = [];
-                    $data['grupkur'] = [];
-                }
+                    if($res->status == true) {
+                        $data['mapel'] = $res->mapel;
+                        $data['grupkur'] = $res->grupkur;
+                    } else {
+                        $data['mapel'] = [];
+                        $data['grupkur'] = [];
+                    }
 
-                $this->load->view("template/kurikulum_header", $data);
-                $this->load->view("kurikulum/mapel", $data);
-                $this->load->view("template/kurikulum_footer");
-            } else if($session['session_status'] == "siswa") {
+                    $this->load->view("kurikulum/mapel", $data);
+                } 
+            } else if($session['session_role'] == "siswa") {
 
-            } else if($session['session_status'] == "ortu") {
+            } else if($session['session_role'] == "ortu") {
 
             }
         }
@@ -52,40 +58,43 @@ class Mapel extends CI_Controller {
 
     function tambah_mapel() {
         $session = $this->M_session->get_session();
-        if (!$session['session_userid'] && !$session['session_status']) {
+        if (!$session['session_userid'] && !$session['session_role']) {
             /*$data['message'] = "<p>The page you requested was not found.</p>";
             $this->load->view("errors/html/error_404", $data);*/
             redirect("login");
         } else {
             $data = [
                 "userid" => $session['session_userid'],
-                "userstts" => $session['session_status']
+                "userstts" => $session['session_status'],
+                "usernama" => $session['session_nama']
             ];
 
-            if($session['session_status'] == "guru") {
-                $data = [
-                    'kurikulum' => $this->input->post('kurikulum'),
-                    'gmapel' => $this->input->post('grupmapel'),
-                    'nama' => $this->input->post('nama'),
-                    'kkm' => $this->input->post('kkm')
-                ];
+            if($session['session_role'] == "guru") {
+                if(strpos($session['session_status'], '1')) {
+                    $data = [
+                        'kurikulum' => $this->input->post('kurikulum'),
+                        'gmapel' => $this->input->post('grupmapel'),
+                        'nama' => $this->input->post('nama'),
+                        'kkm' => $this->input->post('kkm')
+                    ];
 
-                $url = site_url().'/api/mapel/tambah';
+                    $url = site_url().'/api/mapel/tambah';
 
-                $ch = curl_init($url);
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_POST, true);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $response = curl_exec($ch);
 
-                curl_close($ch);
+                    curl_close($ch);
 
-                $res = json_decode($response);
+                    $res = json_decode($response);
 
-                $this->session->set_flashdata('do', "tambah_mapel");
-                $this->session->set_flashdata('status', $res->status);
-                $this->session->set_flashdata('msg', $res->message);
-                redirect('mapel');
+                    $this->session->set_flashdata('do', "tambah_mapel");
+                    $this->session->set_flashdata('status', $res->status);
+                    $this->session->set_flashdata('msg', $res->message);
+                    redirect('mapel');
+                }
             } else {
 
             }

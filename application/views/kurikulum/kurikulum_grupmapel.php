@@ -1,3 +1,5 @@
+<?php echo $header ?>
+
 <div class="page has-sidebar-left height-full">
     <header class="blue accent-3 relative nav-sticky">
         <div class="container-fluid text-white">
@@ -131,3 +133,5 @@
         </div>
     </div>
 </div>
+
+<?php echo $footer ?>

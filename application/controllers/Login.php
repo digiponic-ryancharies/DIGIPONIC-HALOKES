@@ -30,7 +30,8 @@ class Login extends CI_Controller {
     	$data = $res->data;
 
     	if($res->status == true) {
-            $this->M_session->store_session($data->id_user, $data->role);
+            $nama = $data->gelar->gelar_depan." ".$data->nama." ".$data->gelar->gelar_belakang;
+            $this->M_session->store_session($data->id_user, $data->role, $data->status, $nama);
     		redirect("dashboard");
     	} else {
     		redirect("login");

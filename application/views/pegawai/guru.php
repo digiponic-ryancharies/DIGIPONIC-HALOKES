@@ -64,14 +64,16 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Mata Pelajaran</th>
-                                            <th>Kurikulum</th>
+                                            <th>NIGN</th>
+                                            <th>Nama Guru</th>
+                                            <th>Email</th>
                                             <th>Status</th>
                                             <th>Detail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -94,7 +96,7 @@
                         <form action="<?php echo site_url('guru/tambah_guru') ?>" method="post">
                             <div class="card no-b o-r">
                                 <div class="card-body">
-                                    <h5 class="card-title">Tambah Siswa Aktif</h5>
+                                    <h5 class="card-title">Tambah Guru</h5>
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <div class="form-group m-0">

@@ -15,14 +15,15 @@ class Auth extends REST_Controller {
 
         $proc = $this->M_auth->login($user,$pass);
 
-    	if($proc['status'] == TRUE) {
+    	if($proc) {
     		$this->response([
                 'data' => $proc['value'],
+                'msg' => "Login sukses",
                 'status' => TRUE
             ], REST_Controller::HTTP_OK);
     	} else {
     		$this->response([
-                'message' => "Proses gagal",
+                'msg' => "Login gagal",
     			'status' => FALSE
         	], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     	}
