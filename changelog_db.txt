@@ -5,3 +5,4 @@ CHANGELOG DB
 
 29 Juni 2019
 (+) tbl_master_pegawai - tabel
+(+) tbl_master_guru - field - guru_status
