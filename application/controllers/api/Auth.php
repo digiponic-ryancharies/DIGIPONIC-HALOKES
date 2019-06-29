@@ -18,12 +18,12 @@ class Auth extends REST_Controller {
     	if($proc) {
     		$this->response([
                 'data' => $proc['value'],
-                'msg' => "Login sukses",
+                'message' => "Login sukses",
                 'status' => TRUE
             ], REST_Controller::HTTP_OK);
     	} else {
     		$this->response([
-                'msg' => "Login gagal",
+                'message' => "Login gagal",
     			'status' => FALSE
         	], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     	}
