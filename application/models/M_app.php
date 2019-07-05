@@ -90,5 +90,14 @@ class M_app extends CI_Model {
 		$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 		return substr(str_shuffle($str), 0, $length);
 	}
+
+    function getLatestid($key, $table)
+    {
+        $this->db->select_max($key);
+        $query = $this->db->get($table);
+        $result = $query->row_array();
+
+        return $result[$key] + 1;
+    }
 }
 ?>
