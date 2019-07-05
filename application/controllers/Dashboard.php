@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller {
 				];
 
 				if(strpos($session['session_status'], '0')) {
-					
+
 				} else if(strpos($session['session_status'], '1')) {
 			        $this->load->view("kurikulum/index", $data);
 				} else if(strpos($session['session_status'], '2')) {

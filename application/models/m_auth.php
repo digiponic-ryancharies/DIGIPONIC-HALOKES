@@ -50,7 +50,7 @@ class M_auth extends CI_Model {
 						"username" => $user, 
 						"password" => $pass, 
 						"role" => "guru",
-						"status" => $res_guru->guru_status
+						"status_guru" => $res_guru->guru_status
 					];
 				} else if($stts_db == 2) {
 					$data['value'] = ["id_user" => $id, "username" => $user, "password" => $pass, "role" => "siswa"];

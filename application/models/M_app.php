@@ -76,8 +76,13 @@ class M_app extends CI_Model {
 		return $res->id_tapel;
 	}
 
-	function generateSemester() {
-		
+	function getSemesterActive() {
+		$this->db->select("id_semester_url");
+		$this->db->where("semester_aktif", 1);
+		$q = $this->db->get("tbl_sys_semester");
+		$res = $q->row();
+
+		return $res->id_semester_url;
 	}
 
 	// Misc

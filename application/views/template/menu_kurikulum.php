@@ -70,7 +70,7 @@
         <i class="icon icon-angle-left s-18 pull-right"></i>
     </a>
     <ul class="treeview-menu">
-        <li><a href="#"><i class="icon icon-circle-o"></i>Atur Wali Kelas</a></li>
+        <li><a href="<?php echo site_url('distribusi/wali_kelas') ?>"><i class="icon icon-circle-o"></i>Atur Wali Kelas</a></li>
         <li><a href="#"><i class="icon icon-circle-o"></i>Atur Guru Pengajar</a></li>
         <li><a href="#"><i class="icon icon-circle-o"></i>Atur Pembina Ekstrakurikuler</a></li>
         <li><a href="#"><i class="icon icon-circle-o"></i>Atur Anggota Ekstrakurikuler</a></li>
