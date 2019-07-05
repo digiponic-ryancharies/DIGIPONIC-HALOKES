@@ -6,10 +6,11 @@ class M_guru extends CI_Model {
     }
 
     function getAll() {
-        //$this->db->select("id_ekskul_url, ekskul_nama, ekskul_jadwal");
+        $this->db->select("id_guru_url AS _id, IFNULL(guru_nign,'-') AS nign,
+                           CONCAT(IFNULL(guru_gelar_depan,''),' ',guru_nama,' ',guru_gelar_belakang) AS nama_guru,
+                           IFNULL(guru_email,'-') AS email_guru, status");
         $this->db->where("status", 1);
         $sql = $this->db->get("tbl_master_guru");
-
         return $sql->result_array();
     }
 

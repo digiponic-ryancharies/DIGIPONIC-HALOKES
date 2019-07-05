@@ -1,3 +1,5 @@
+<?php echo $header ?>
+
 <div class="page has-sidebar-left height-full">
     <header class="blue accent-3 relative nav-sticky">
         <div class="container-fluid text-white">
@@ -33,7 +35,7 @@
                             $msg = $this->session->flashdata("msg");
 
                             if(isset($do)) {
-                                if($do == "tambah_grupmapel") {
+                                if($do == "tambah_guru") {
                                     if($stts == true) {
                                         echo '
                                             <div class="alert alert-info alert-dismissible mt-3" role="alert">
@@ -72,17 +74,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $no=1; foreach($guru as $row) { ?>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?php echo $no ?></td>
+                                            <td><?php echo $row->nign ?></td>
+                                            <td><?php echo $row->nama_guru ?></td>
+                                            <td><?php echo $row->email_guru ?></td>
+                                            <td><?php echo ($row->status == 1 ? "Aktif" : "Tidak Aktif") ?></td>
                                             <td>
                                                 <a href="#" class="btn btn-primary btn-xs">Detail</a>
                                                 <a href="#" class="btn btn-danger btn-xs">Non-aktifkan</a>
                                             </td>
                                         </tr>
+                                        <?php $no++; } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -104,15 +108,21 @@
                                                 <input id="name" class="form-control r-0 light s-12" type="text" name="nama">
                                             </div>
                                             <div class="form-row">
-                                                <div class="form-group col-4 m-0">
+                                                <div class="form-group col-6 m-0">
                                                     <label for="nign" class="col-form-label s-12">NIGN</label>
                                                     <input id="nign" class="form-control r-0 light s-12" type="text" name="nign">
                                                 </div>
-                                                <div class="form-group col-4 m-0">
+                                                <div class="form-group col-6 m-0">
+                                                    <label for="nip" class="col-form-label s-12">NIP</label>
+                                                    <input id="nip" class="form-control r-0 light s-12" type="text" name="nip">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-6 m-0">
                                                     <label for="gd" class="col-form-label s-12">GELAR DEPAN</label>
                                                     <input id="gd" class="form-control r-0 light s-12" type="text" name="gd">
                                                 </div>
-                                                <div class="form-group col-4 m-0">
+                                                <div class="form-group col-6 m-0">
                                                     <label for="gb" class="col-form-label s-12">GELAR BELAKANG</label>
                                                     <input id="gb" class="form-control r-0 light s-12" type="text" name="gb">
                                                 </div>
@@ -165,6 +175,12 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-12 m-0">
+                                                    <label for="username" class="col-form-label s-12">USERNAME</label>
+                                                    <input id="username" class="form-control r-0 light s-12" name="username">
+                                                </div>
+                                            </div>
                                             <hr>
                                             <button type="submit" class="btn btn-primary btn-sm"><i class="icon-save mr-2"></i>Save Data</button>
                                         </div>
@@ -178,3 +194,5 @@
         </div>
     </div>
 </div>
+
+<?php echo $footer ?>

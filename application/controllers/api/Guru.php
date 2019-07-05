@@ -1,20 +1,16 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 require APPPATH . '/libraries/REST_Controller.php';
-
 use Restserver\Libraries\REST_Controller;
 
-class Guru extends REST_Controller
-{
-    public function __construct()
-    {
+class Guru extends REST_Controller {
+    public function __construct() {
         parent::__construct();
         $this->load->model("M_app");
         $this->load->model("M_guru");
     }
 
-    function all_get()
-    {
+    function all_get() {
         $proc = $this->M_guru->getAll();
 
         if ($proc == TRUE) {
@@ -31,24 +27,25 @@ class Guru extends REST_Controller
         }
     }
 
-    function tambah_post()
-    {
+    function tambah_post() {
         $data = [
             "id_guru"             => $this->M_app->getLatestid('id_guru', 'tbl_master_guru'),
             "id_guru_url"         => $this->M_app->randomString(10),
             "guru_nama"           => $this->post('nama'),
             "guru_nip"            => $this->post('nip'),
             "guru_nign"           => $this->post('nign'),
-            "guru_gelar_depan"    => $this->post('gelar_depan'),
-            "guru_gelar_belakang" => $this->post('gelar_belakang'),
-            "guru_tgl_lahir"      => $this->post('tgl_lahir'),
-            "guru_tempat_lahir"   => $this->post('tempat_lahir'),
-            "guru_jkel"           => $this->post('jkel'),
-            "guru_no_hp"          => $this->post('no_hp'),
+            "guru_gelar_depan"    => $this->post('gd'),
+            "guru_gelar_belakang" => $this->post('gb'),
+            "guru_tgl_lahir"      => $this->post('tanggal'),
+            "guru_tempat_lahir"   => $this->post('tempat'),
+            "guru_jkel"           => $this->post('jk'),
+            "guru_alamat"         => $this->post('alamat'),
+            "guru_no_hp"          => $this->post('nohp'),
             "guru_email"          => $this->post('email'),
             "guru_agama"          => $this->post('agama'),
             "guru_username"       => $this->post('username'),
-            "guru_password"       => sha1($this->post('password')),
+            "guru_password"       => sha1("password"),
+            "guru_status"         => 0,
             "created_at"          => $this->M_app->datetimeNow(),
             "status"              => 1
         ];
