@@ -74,16 +74,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $no=1; foreach($kelas as $row) { ?>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?php echo $no ?></td>
+                                            <td><?php echo $row->nama_kelas ?></td>
+                                            <td><?php echo $row->jml_siswa ?></td>
+                                            <td><?php echo $row->ruang ?></td>
+                                            <td><?php echo ($row->status == 1 ? "Aktif" : "Tidak Aktif") ?></td>
                                             <td>
                                                 <a href="#" class="btn btn-primary btn-xs">Detail</a>
                                             </td>
                                         </tr>
+                                        <?php $no++; } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -100,17 +102,7 @@
                                     <h5 class="card-title">Tambah Kelas</h5>
                                     <div class="form-row">
                                         <div class="col-md-12">
-                                            <div class="form-row">
-                                                <div class="form-group col-6 m-0">
-                                                    <label for="tapel" class="col-form-label s-12">TAHUN PELAJARAN</label>
-                                                    <input id="tapel" class="form-control r-0 light s-12 " type="text" readonly>
-                                                </div>
-                                                <div class="form-group col-6 m-0">
-                                                    <label for="smt" class="col-form-label s-12">SEMESTER</label>
-                                                    <input id="smt" class="form-control r-0 light s-12 " type="text" readonly>
-                                                </div>
-                                            </div>
-
+                                            <input type="hidden" name="id_semester" value="<?php echo $id_semester ?>">
                                             <div class="form-row">
                                                 <div class="form-group col-6 m-0">
                                                     <label for="jadwal" class="col-form-label s-12">TINGKAT</label>

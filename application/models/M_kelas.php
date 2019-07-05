@@ -5,11 +5,17 @@ class M_kelas extends CI_Model {
         $this->load->database();
     }
 
-    function getAll() {
+    function getAll($ids) {
+        $this->db->select("k.id_kelas_url AS _id,
+                           CONCAT(k.kelas_tingkat,k.kelas_abjad) AS nama_kelas,
+                           COUNT(tkd.id_kelas_detail) AS jml_siswa,
+                           k.kelas_ruang AS ruang,
+                           k.status AS status");
+        $this->db->join("tbl_kelas_detail tkd", "k.id_kelas = tkd.id_kelas", "left");
         $this->db->join("tbl_sys_semester sms", "sms.id_semester = k.id_semester");
-        $this->db->join("tbl_master_guru g", "g.id_guru = k.id_guru");
-        $this->db->select("k.*, sms.semester_nama, g.guru_gelar_depan, g.guru_nama, g.guru_gelar_belakang, g.guru_nip");
         $this->db->where("k.status", 1);
+        $this->db->where("sms.id_semester_url", $ids);
+        $this->db->group_by("k.id_kelas");
         $sql = $this->db->get("tbl_kelas k");
 
         return $sql->result_array();
