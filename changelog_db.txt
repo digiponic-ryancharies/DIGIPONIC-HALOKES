@@ -13,3 +13,6 @@ CHANGELOG DB
 3 Juli 2019
 (-) tbl_kelas - field - id_guru
 (+) tbl_kelas_wali - tabel
+
+5 Juli 2019
+(+) tbl_master_guru - field - guru_alamat
