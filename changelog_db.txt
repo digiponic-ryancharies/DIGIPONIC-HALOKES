@@ -6,3 +6,10 @@ CHANGELOG DB
 29 Juni 2019
 (+) tbl_master_pegawai - tabel
 (+) tbl_master_guru - field - guru_status
+
+30 Juni 2019
+(+) tbl_mapel_jadwal - field - id_semester
+
+3 Juli 2019
+(-) tbl_kelas - field - id_guru
+(+) tbl_kelas_wali - tabel

@@ -26,3 +26,11 @@ CHANGELOG
 - Layout data kelas dan tambah kelas
 - Layout dashboard user kepegawaian
 - Layout data guru dan tambah guru
+
+3 Juli 2019
+- Layout distribusi wali kelas
+
+5 Juli 2019
+- API guru bagian tampil dan tambah
+- API kelas bagian tampil dan tambah
+- API distribusi bagian wali kelas
