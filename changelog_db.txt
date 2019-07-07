@@ -16,3 +16,9 @@ CHANGELOG DB
 
 5 Juli 2019
 (+) tbl_master_guru - field - guru_alamat
+
+6 Juli 2019
+(+) tbl_mapel_kurikulum - field - kurikulum_aktif
+
+7 Juli 2019
+(+) tbl_ekskul_absensi - foreign_key - id_ekskul

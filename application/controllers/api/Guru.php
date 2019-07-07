@@ -27,6 +27,19 @@ class Guru extends REST_Controller {
         }
     }
 
+    function pengajar_get() {
+        $ids = $this->M_app->getSemesterActive();
+        $pengajar = $this->M_guru->getGuruPengajarAktif($ids);
+
+        $pengajar = (($pengajar->num_rows() != 0) ? $pengajar->result_array() : []);
+
+        $this->response([
+            'data' => $pengajar,
+            'message' => "Proses berhasil",
+            'status' => TRUE
+        ], REST_Controller::HTTP_OK);
+    }
+
     function tambah_post() {
         $data = [
             "id_guru"             => $this->M_app->getLatestid('id_guru', 'tbl_master_guru'),

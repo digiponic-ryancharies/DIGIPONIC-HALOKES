@@ -39,46 +39,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Alexander Pierce</td>
-                                            <td>Matematika</td>
-                                            <td>VIII-A</td>
-                                            <td>Aktif</td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary btn-xs">Detail</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Ylexander Pierce</td>
-                                            <td>Bahasa Indonesia</td>
-                                            <td>VIII-A</td>
-                                            <td>Aktif</td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary btn-xs">Detail</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Plexander Pierce</td>
-                                            <td>Bahasa Inggris</td>
-                                            <td>VIII-A</td>
-                                            <td>Aktif</td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary btn-xs">Detail</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Alexander Pierce</td>
-                                            <td>Matematika</td>
-                                            <td>VIII-B</td>
-                                            <td>Aktif</td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary btn-xs">Detail</a>
-                                            </td>
-                                        </tr>
+                                        <?php $no=1; foreach($pengajar as $row) { ?>
+                                            <tr>
+                                                <td><?php echo $no ?></td>
+                                                <td><?php echo $row->guru ?></td>
+                                                <td><?php echo $row->mapel ?></td>
+                                                <td><?php echo $row->kelas ?></td>
+                                                <td><?php echo ($row->status == 1 ? "Aktif" : "Tidak Aktif") ?></td>
+                                                <td>
+                                                    <a href="#" class="btn btn-primary btn-xs">Detail</a>
+                                                </td>
+                                            </tr>
+                                        <?php $no++; } ?>
                                     </tbody>
                                 </table>
                             </div>

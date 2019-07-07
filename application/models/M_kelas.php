@@ -39,5 +39,14 @@ class M_kelas extends CI_Model {
         $sql = $this->db->get("tbl_kelas tk");
         return $sql;
     }
+
+    function getKelasIDFromURL($idu) {
+        $this->db->select("id_kelas");
+        $this->db->where("id_kelas_url", $idu);
+
+        $sql = $this->db->get("tbl_kelas");
+        $res = $sql->row();
+        return $res->id_kelas;
+    }
 }
 ?>

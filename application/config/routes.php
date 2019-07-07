@@ -59,3 +59,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['api/siswa/aktif/all'] = 'api/siswa/aktif_all';
 $route['api/siswa/tambah/aktif'] = 'api/siswa/tambah_aktif';
 $route['api/dist/wali_kelas'] = 'api/distribusi/walikelas';
+$route['api/dist/atur_wakel'] = 'api/distribusi/aturwakel';
+$route['api/dist/guru_ajar'] = 'api/distribusi/guruajar';
+$route['api/dist/atur_guruajar'] = 'api/distribusi/aturguruajar';

@@ -100,6 +100,7 @@ class M_app extends CI_Model {
 		return substr(str_shuffle($str), 0, $length);
 	}
 
+	// ID
     function getLatestid($key, $table)
     {
         $this->db->select_max($key);
@@ -108,5 +109,7 @@ class M_app extends CI_Model {
 
         return $result[$key] + 1;
     }
+
+   
 }
 ?>

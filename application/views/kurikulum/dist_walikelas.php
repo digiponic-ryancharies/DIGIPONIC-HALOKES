@@ -30,12 +30,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <?php 
-                            /*$do = $this->session->flashdata("do");
+                            $do = $this->session->flashdata("do");
                             $stts = $this->session->flashdata("status");
                             $msg = $this->session->flashdata("msg");
 
                             if(isset($do)) {
-                                if($do == "tambah_ekskul") {
+                                if($do == "atur_wakel") {
                                     if($stts == true) {
                                         echo '
                                             <div class="alert alert-info alert-dismissible mt-3" role="alert">
@@ -56,7 +56,7 @@
                                         ';
                                     }
                                 }
-                            }*/
+                            }
                         ?>
                         
                         <div class="card my-3 no-b">
@@ -73,15 +73,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $no=1; foreach($wali_kelas as $row) { ?>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?php echo $no ?></td>
+                                            <td><?php echo $row->nama_kelas ?></td>
+                                            <td><?php echo $row->nama_guru ?></td>
+                                            <td><?php echo ($row->status == 1 ? "Aktif" : "Tidak Aktif") ?></td>
                                             <td>
                                                 <a href="#" class="btn btn-danger btn-xs">Non-aktifkan</a>
                                             </td>
                                         </tr>
+                                        <?php $no++; } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -92,7 +94,7 @@
             <div class="tab-pane animated fadeInUpShort" id="tbh-wk">
                 <div class="row my-3">
                     <div class="col-md-6">
-                        <form action="#" method="post">
+                        <form action="<?php echo site_url('distribusi/atur_wali_kelas') ?>" method="post">
                             <div class="card no-b o-r">
                                 <div class="card-body">
                                     <h5 class="card-title">Atur Wali Kelas</h5>
@@ -102,12 +104,18 @@
                                                 <label for="name" class="col-form-label s-12">KELAS</label>
                                                 <select name="kelas" class="form-control">
                                                     <option value="">-- Pilih Kelas --</option>
+                                                    <?php foreach($kelas as $rowk) { ?>
+                                                        <option value="<?php echo $rowk->_id ?>"><?php echo $rowk->nama_kelas ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <div class="form-group m-0">
                                                 <label for="name" class="col-form-label s-12">GURU</label>
                                                 <select name="guru" class="form-control">
                                                     <option value="">-- Pilih Guru --</option>
+                                                    <?php foreach($guru as $rowg) { ?>
+                                                        <option value="<?php echo $rowg->_id ?>"><?php echo $rowg->nama_guru ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <hr>
