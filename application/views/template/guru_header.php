@@ -37,43 +37,24 @@
     <div class="plane-container">
         <div class="preloader-wrapper small active">
             <div class="spinner-layer spinner-blue">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-                <div class="circle"></div>
+                <div class="circle-clipper left"><div class="circle"></div></div>
+                <div class="gap-patch"><div class="circle"></div></div>
+                <div class="circle-clipper right"><div class="circle"></div></div>
             </div>
-            </div>
-
             <div class="spinner-layer spinner-red">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-                <div class="circle"></div>
+                <div class="circle-clipper left"><div class="circle"></div></div>
+                <div class="gap-patch"><div class="circle"></div></div>
+                <div class="circle-clipper right"><div class="circle"></div></div>
             </div>
-            </div>
-
             <div class="spinner-layer spinner-yellow">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-                <div class="circle"></div>
+                <div class="circle-clipper left"><div class="circle"></div></div>
+                <div class="gap-patch"><div class="circle"></div></div>
+                <div class="circle-clipper right"><div class="circle"></div></div>
             </div>
-            </div>
-
             <div class="spinner-layer spinner-green">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-                <div class="circle"></div>
-            </div>
+                <<div class="circle-clipper left"><div class="circle"></div></div>
+                <div class="gap-patch"><div class="circle"></div></div>
+                <div class="circle-clipper right"><div class="circle"></div></div>
             </div>
         </div>
     </div>
@@ -95,7 +76,7 @@
                         <img class="user_avatar" src="<?php echo base_url() ?>assets/img/dummy/u2.png" alt="User Image">
                     </div>
                     <div class="float-left info">
-                        <h6 class="font-weight-light mt-2 mb-1"><?php echo $userid ?></h6>
+                        <h6 class="font-weight-light mt-2 mb-1"><?php echo $usernama ?></h6>
                         <a href="#">2018/2019 Smt Genap</a>
                     </div>
                 </div>
@@ -105,114 +86,42 @@
                         <a href="index.html" class="list-group-item list-group-item-action ">
                             <i class="mr-2 icon-umbrella text-blue"></i>Profil
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action"><i
-                                class="mr-2 icon-cogs text-yellow"></i>Pengaturan</a>
-                        <a href="#" class="list-group-item list-group-item-action"><i
-                                class="mr-2 icon-security text-purple"></i>Ganti Password</a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <i class="mr-2 icon-cogs text-yellow"></i>Pengaturan
+                        </a>
+                        <a href="<?php echo site_url('logout') ?>" class="list-group-item list-group-item-action">
+                            <i class="mr-2 icon-security text-purple"></i>Logout
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         <ul class="sidebar-menu">
-            <li class="treeview">
+            <li>
                 <a href="<?php echo site_url('dashboard') ?>">
                 <i class="icon icon-dashboard2 blue-text s-18"></i> 
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="header light mt-3"><strong>MENU KURIKULUM</strong></li>
-            <li class="treeview">
-                <a href="#">
-                <i class="icon icon-school blue-text s-18"></i> 
-                    <span>Kegiatan Belajar Mengajar</span>
-                </a>
-            </li>
-            <li class="treeview">
-                <a href="<?php echo site_url('ekstrakurikuler') ?>">
-                <i class="icon icon-basketball blue-text s-18"></i> 
-                    <span>Ekstrakurikuler</span>
-                </a>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-class blue-text s-18"></i>
-                    <span>Presensi</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('presensi/kbm') ?>"><i class="icon icon-circle-o"></i>Presensi KBM</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Presensi Ekstrakurikuler</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-user-circle-o  blue-text s-18"></i>
-                    <span>Pengajar (Guru)</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo site_url('guru/pengajar') ?>"><i class="icon icon-circle-o"></i>Data Pengajar</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Silabus / RPP</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Program Semester</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-note blue-text s-18"></i>
-                    <span>Penilaian</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Penilaian KBM</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Penilaian Ekstrakurikuler</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                <i class="icon icon-notebook blue-text s-18"></i> 
-                    <span>Raport Siswa</span>
-                </a>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-timelapse blue-text s-18"></i>
-                    <span>Kurikulum</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Grup Kurikulum</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Grup Mata Pelajaran</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Data Mata Pelajaran</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Ekstrakurikuler</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-cog blue-text s-18"></i>
-                    <span>Distribusi</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Atur Wali Kelas</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Atur Guru Pengajar</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Atur Pembina Ekstrakurikuler</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Atur Anggota Ekstrakurikuler</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="icon icon-calendar blue-text s-18"></i>
-                    <span>Penjadwalan</span>
-                    <i class="icon icon-angle-left s-18 pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Jadwal Pelajaran</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Jadwal Ekstrakurikuler</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Jadwal Ujian</a></li>
-                    <li><a href="#"><i class="icon icon-circle-o"></i>Kalender Akademik</a></li>
-                </ul>
-            </li>
-            <li class="header light mt-3"><strong>MENU GURU</strong></li>
+            <?php
+                // ROLE MENU USER GURU
+                $user_status = explode(",", $userstts);
+                for ($i=0; $i < count($user_status); $i++) { 
+                    switch($user_status[$i]) {
+                        case 0:
+                            echo $this->load->view("template/menu_guru", '', TRUE);
+                            break;
+                        case 1:
+                            echo $this->load->view("template/menu_kurikulum", '', TRUE);
+                            break;
+                        case 2:
+                            echo $this->load->view("template/menu_kesiswaan", '', TRUE);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            ?>
         </ul>
     </section>
 </aside>
@@ -222,8 +131,7 @@
         <div class="collapse" id="navbarToggleExternalContent">
             <div class="bg-dark pt-2 pb-2 pl-4 pr-2">
                 <div class="search-bar">
-                    <input class="transparent s-24 text-white b-0 font-weight-lighter w-128 height-50" type="text"
-                           placeholder="start typing...">
+                    <input class="transparent s-24 text-white b-0 font-weight-lighter w-128 height-50" type="text" placeholder="start typing...">
                 </div>
                 <a href="#" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-expanded="false"
                    aria-label="Toggle navigation" class="paper-nav-toggle paper-nav-white active "><i></i></a>
@@ -352,78 +260,6 @@
                            aria-expanded="false" aria-label="Toggle navigation">
                             <i class=" icon-search3 "></i>
                         </a>
-                    </li>
-                    <!-- Right Sidebar Toggle Button -->
-                    <li>
-                        <a class="nav-link ml-2" data-toggle="control-sidebar">
-                            <i class="icon-tasks "></i>
-                        </a>
-                    </li>
-                    <!-- User Account-->
-                    <li class="dropdown custom-dropdown user user-menu ">
-                        <a href="#" class="nav-link" data-toggle="dropdown">
-                            <img src="<?php echo base_url() ?>assets/img/dummy/u8.png" class="user-image" alt="User Image">
-                            <i class="icon-more_vert "></i>
-                        </a>
-                        <div class="dropdown-menu p-4 dropdown-menu-right">
-                            <div class="row box justify-content-between my-4">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="icon-apps purple lighten-2 avatar  r-5"></i>
-                                        <div class="pt-1">Apps</div>
-                                    </a>
-                                </div>
-                                <div class="col"><a href="#">
-                                    <i class="icon-beach_access pink lighten-1 avatar  r-5"></i>
-                                    <div class="pt-1">Profile</div>
-                                </a></div>
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="icon-perm_data_setting indigo lighten-2 avatar  r-5"></i>
-                                        <div class="pt-1">Settings</div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row box justify-content-between my-4">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="icon-star light-green lighten-1 avatar  r-5"></i>
-                                        <div class="pt-1">Favourites</div>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="icon-save2 orange accent-1 avatar  r-5"></i>
-                                        <div class="pt-1">Saved</div>
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="icon-perm_data_setting grey darken-3 avatar  r-5"></i>
-                                        <div class="pt-1">Settings</div>
-                                    </a>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row box justify-content-between my-4">
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="icon-apps purple lighten-2 avatar  r-5"></i>
-                                        <div class="pt-1">Apps</div>
-                                    </a>
-                                </div>
-                                <div class="col"><a href="#">
-                                    <i class="icon-beach_access pink lighten-1 avatar  r-5"></i>
-                                    <div class="pt-1">Profile</div>
-                                </a></div>
-                                <div class="col">
-                                    <a href="#">
-                                        <i class="icon-perm_data_setting indigo lighten-2 avatar  r-5"></i>
-                                        <div class="pt-1">Settings</div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </li>
                 </ul>
             </div>

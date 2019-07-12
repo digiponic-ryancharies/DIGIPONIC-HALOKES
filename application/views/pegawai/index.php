@@ -14,7 +14,7 @@
         </div>
     </header>
     <div class="container-fluid my-3">
-        <p>User Kurikulum lur</p>
+        <p>You are the boss make something great.</p>
     </div>
 </div>
 

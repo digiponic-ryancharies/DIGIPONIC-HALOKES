@@ -14,7 +14,7 @@
         </div>
     </header>
     <div class="container-fluid my-3">
-        <p>User Kurikulum lur</p>
+        <p>User Kesiswaan lur</p>
     </div>
 </div>
 
