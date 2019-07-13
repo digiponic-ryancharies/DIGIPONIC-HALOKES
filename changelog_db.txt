@@ -4,7 +4,7 @@ CHANGELOG DB
 (+) tbl_mapel_grup - field - id_mapel_kurikulum
 
 29 Juni 2019
-(+) tbl_master_pegawai - tabel
+(+) tbl_master_pegawai - table
 (+) tbl_master_guru - field - guru_status
 
 30 Juni 2019
@@ -12,7 +12,7 @@ CHANGELOG DB
 
 3 Juli 2019
 (-) tbl_kelas - field - id_guru
-(+) tbl_kelas_wali - tabel
+(+) tbl_kelas_wali - table
 
 5 Juli 2019
 (+) tbl_master_guru - field - guru_alamat
@@ -22,3 +22,6 @@ CHANGELOG DB
 
 7 Juli 2019
 (+) tbl_ekskul_absensi - foreign_key - id_ekskul
+
+12 Juli 2019
+(+) tbl_super_admin - table

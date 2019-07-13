@@ -41,3 +41,11 @@ CHANGELOG
 
 7 Juli 2019
 - API data pengajar bagian tampil
+
+12 Juli 2019
+- Buat user superadmin
+
+13 Juli 2019
+- Buat library curl
+- API jadwal mengajar bagian tampil dan edit
+- Layout jadwal mengajar dan atur jadwal
