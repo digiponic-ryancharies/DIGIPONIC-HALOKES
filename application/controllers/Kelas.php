@@ -20,7 +20,34 @@ class Kelas extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru") {
+            if($session['session_role'] == "superadmin") {
+                // API Execute
+                $url = site_url().'/api/kelas/all';
+                
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $response = curl_exec($ch);
+                curl_close($ch);
+
+                $res = json_decode($response);
+
+                if($res->status == true) {
+                    $data['kelas'] = $res->data;
+                    $data['id_semester'] = $res->id_semester;
+                } else {
+                    $data['kelas'] = [];
+                    $data['id_semester'] = "";
+                }
+
+                $data = [
+                    "header" => $this->load->view("template/sadmin_header", $data, TRUE),
+                    "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
+                ];
+
+                $this->load->view("kesiswaan/kelas", $data);
+            } else if($session['session_role'] == "guru") {
                 if(strpos($session['session_status'], '2')) {
                     // API Execute
                     $url = site_url().'/api/kelas/all';
@@ -66,7 +93,7 @@ class Kelas extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru") {
+            if($session['session_role'] == "guru" || $session['session_role'] == "sadmin") {
                 if(strpos($session['session_status'], '2')) {
                     $data = [
                         'id_semester' => $this->input->post('id_semester'),

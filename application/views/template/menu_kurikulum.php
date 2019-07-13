@@ -19,7 +19,7 @@
     </a>
     <ul class="treeview-menu">
         <li><a href="<?php echo site_url('presensi/kbm') ?>"><i class="icon icon-circle-o"></i>Presensi KBM</a></li>
-        <li><a href="#"><i class="icon icon-circle-o"></i>Presensi Ekstrakurikuler</a></li>
+        <li><a href="<?php echo site_url('presensi/ekstrakurikuler') ?>"><i class="icon icon-circle-o"></i>Presensi Ekstrakurikuler</a></li>
     </ul>
 </li>
 <li class="treeview">

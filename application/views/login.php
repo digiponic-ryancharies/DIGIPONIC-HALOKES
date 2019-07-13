@@ -92,7 +92,7 @@
                 </div>
                 <div class="p-5">
                     <h3>Selamat Datang</h3>
-                    <p>Selamat datang di aplikasi HALOKES, silahkan masukkan username dan password untuk memulai</p>
+                    <p>Selamat datang di aplikasi HALOKES, silahkan masukkan username dan password untuk memulai, gunakan user demo<br> user : demo<br>pass : demo</p>
                     <?php echo form_open('login/auth') ?>
                         <div class="form-group has-icon"><i class="icon-envelope-o"></i>
                             <?php echo form_input("username", "", array("class" => "form-control form-control-lg", "placeholder" => "Username")) ?>

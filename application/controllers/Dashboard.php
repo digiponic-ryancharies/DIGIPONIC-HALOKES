@@ -19,7 +19,14 @@ class Dashboard extends CI_Controller {
 				"usernama" => $session['session_nama']
 			];
 
-			if($session['session_role'] == "guru") {
+			if($session['session_role'] == "superadmin") {
+				$data = [
+					"header" => $this->load->view("template/sadmin_header", $data, TRUE),
+					"footer" => $this->load->view("template/sadmin_footer", '', TRUE)
+				];
+
+				$this->load->view("sadmin/index", $data);
+			} else if($session['session_role'] == "guru") {
 				$data = [
 					"header" => $this->load->view("template/guru_header", $data, TRUE),
 					"footer" => $this->load->view("template/guru_footer", '', TRUE)

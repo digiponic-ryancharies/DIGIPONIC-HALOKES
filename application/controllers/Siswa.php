@@ -20,7 +20,31 @@ class Siswa extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru") {
+            if($session['session_role'] == "superadmin") {
+                $data = [
+                    "header" => $this->load->view("template/sadmin_header", $data, TRUE),
+                    "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
+                ];
+
+                $url = site_url().'/api/siswa/aktif/all';
+                
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $response = curl_exec($ch);
+                curl_close($ch);
+
+                $res = json_decode($response);
+
+                if($res->status == true) {
+                    $data['siswa'] = $res->siswa;
+                } else {
+                    $data['siswa'] = [];
+                }
+
+                $this->load->view("kesiswaan/siswa_aktif", $data);
+            } else if($session['session_role'] == "guru") {
                 $data = [
                     "header" => $this->load->view("template/guru_header", $data, TRUE),
                     "footer" => $this->load->view("template/guru_footer", '', TRUE)
@@ -67,7 +91,7 @@ class Siswa extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru") {
+            if($session['session_role'] == "guru" || $session['session_role'] == "superadmin") {
                 if(strpos($session['session_status'], '2')) {
                     $data = [
                         'tapel' => $this->input->post('tahun'),

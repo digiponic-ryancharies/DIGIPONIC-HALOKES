@@ -19,7 +19,32 @@ class Guru extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "pegawai") {
+            if($session['session_role'] == "superadmin") {
+                // API Execute
+                $url = site_url().'/api/guru/all';
+                
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $response = curl_exec($ch);
+                curl_close($ch);
+
+                $res = json_decode($response);
+
+                if($res->status == true) {
+                    $data['guru'] = $res->data;
+                } else {
+                    $data['guru'] = [];
+                }
+
+                $data = [
+                    "header" => $this->load->view("template/sadmin_header", $data, TRUE),
+                    "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
+                ];
+
+                $this->load->view("pegawai/guru", $data);
+            } else if($session['session_role'] == "pegawai") {
                 // API Execute
                 $url = site_url().'/api/guru/all';
                 
@@ -63,7 +88,32 @@ class Guru extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru") {
+            if($session['session_role'] == "superadmin") {
+                // API Execute
+                $url = site_url().'/api/guru/pengajar';
+                
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $response = curl_exec($ch);
+                curl_close($ch);
+
+                $res = json_decode($response);
+
+                if($res->status == true) {
+                    $data['pengajar'] = $res->data;
+                } else {
+                    $data['pengajar'] = [];
+                }
+
+                $data = [
+                    "header" => $this->load->view("template/sadmin_header", $data, TRUE),
+                    "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
+                ];
+
+                $this->load->view("kurikulum/guru_pengajar", $data);
+            } else if($session['session_role'] == "guru") {
                 if(strpos($session['session_status'], '1')) {
                     // API Execute
                     $url = site_url().'/api/guru/pengajar';
@@ -107,7 +157,7 @@ class Guru extends CI_Controller {
             $this->load->view("errors/html/error_404", $data);*/
             redirect("login");
         } else {
-            if($session['session_role'] == "pegawai") {
+            if($session['session_role'] == "pegawai" || $session['session_role'] == "superadmin") {
                 $data = [
                     'nama' => $this->input->post('nama'),
                     'nign' => $this->input->post('nign'),

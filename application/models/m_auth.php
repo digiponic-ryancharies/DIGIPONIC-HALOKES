@@ -10,7 +10,10 @@ class M_auth extends CI_Model {
 			$data['value'] = "";
 			$data['status'] = FALSE;
 		} else {
-			$db = $this->db->query("SELECT tmg.id_guru_url AS id, tmg.guru_username AS username, tmg.guru_password AS password, '1' AS status 
+			$db = $this->db->query("SELECT tsa.id_sadmin_url AS id, tsa.sadmin_username AS username, tsa.sadmin_password AS password, '0' AS status
+									FROM tbl_super_admin tsa WHERE tsa.sadmin_username='$user' AND tsa.sadmin_password='$pass'
+									UNION
+									SELECT tmg.id_guru_url AS id, tmg.guru_username AS username, tmg.guru_password AS password, '1' AS status 
 									FROM tbl_master_guru tmg WHERE tmg.guru_username='$user' AND tmg.guru_password='$pass' 
 									UNION
 							  		SELECT tms.id_siswa_url AS id, tms.siswa_username AS username, tms.siswa_password AS password, '2' AS status 
@@ -29,7 +32,9 @@ class M_auth extends CI_Model {
 			$id = $res->id;
 
 			if($user == $user_db && $pass == $pass_db) {
-				if($stts_db == 1) {
+				if($stts_db == 0) {
+					$data['value'] = ["id_user" => $id, "username" => $user, "password" => $pass, "role" => "superadmin"];	
+				} else if($stts_db == 1) {
 					// get properti lainnya dan get role status apakah dia hanya guru atau ketambahan tugas sbg kesiswaan/kurikulum
 					// daftar role status guru
 					// 0 = guru biasa

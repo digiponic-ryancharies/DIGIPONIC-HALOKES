@@ -30,8 +30,13 @@ class Login extends CI_Controller {
     	$data = $res->data;
 
     	if($res->status) {
-            $nama = $data->gelar->gelar_depan." ".$data->nama." ".$data->gelar->gelar_belakang;
-            $this->M_session->store_session($data->id_user, $data->role, $data->status_guru, $nama);
+            if($data->role == "guru") {
+                $nama = $data->gelar->gelar_depan." ".$data->nama." ".$data->gelar->gelar_belakang;
+                $this->M_session->store_session($data->id_user, $data->role, $data->status_guru, $nama);
+            } else if($data->role == "superadmin") {
+                $this->M_session->store_session($data->id_user, $data->role, 0, "Demo");
+            }
+
     		redirect("dashboard");
     	} else {
     		redirect("login");

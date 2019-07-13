@@ -23,7 +23,14 @@ class Presensi extends CI_Controller {
                 "bulanIndo" => $this->m_app->bulanIndo()
             ];
 
-            if($session['session_role'] == "guru") {
+            if($session['session_role'] == "superadmin") {
+                $data = [
+                    "header" => $this->load->view("template/sadmin_header", $data, TRUE),
+                    "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
+                ];
+
+                $this->load->view("kurikulum/presensi_kbm", $data);    
+            } else if($session['session_role'] == "guru") {
                 if(strpos($session['session_status'], '1')) {
                     $data = [
                         "header" => $this->load->view("template/guru_header", $data, TRUE),
@@ -53,7 +60,14 @@ class Presensi extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru") {
+            if($session['session_role'] == "sadmin") {
+                $data = [
+                    "header" => $this->load->view("template/sadmin_header", $data, TRUE),
+                    "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
+                ];
+
+                $this->load->view("kurikulum/presensi_ekskul", $data);
+            } else if($session['session_role'] == "guru") {
                 if(strpos($session['session_status'], '1')) {
                     $data = [
                         "header" => $this->load->view("template/guru_header", $data, TRUE),

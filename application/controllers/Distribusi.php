@@ -22,7 +22,36 @@ class Distribusi extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru") {
+            if($session['session_role'] == "superadmin") {
+                $data = [
+                    "header" => $this->load->view("template/sadmin_header", $data, TRUE),
+                    "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
+                ];
+
+                // API Execute
+                $url = site_url().'/api/dist/wali_kelas';
+                
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $response = curl_exec($ch);
+                curl_close($ch);
+
+                $res = json_decode($response);
+
+                if($res->status == true) {
+                    $data['kelas'] = $res->kelas;
+                    $data['guru'] = $res->guru;
+                    $data['wali_kelas'] = $res->wali_kelas;
+                } else {
+                    $data['kelas'] = [];
+                    $data['guru'] = [];
+                    $data['wali_kelas'] = [];
+                }
+
+                $this->load->view("kurikulum/dist_walikelas", $data);
+            } else if($session['session_role'] == "guru") {
                 $data = [
                     "header" => $this->load->view("template/guru_header", $data, TRUE),
                     "footer" => $this->load->view("template/guru_footer", '', TRUE)
@@ -70,7 +99,38 @@ class Distribusi extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru") {
+            if($session['session_role'] == "superadmin") {
+                $data = [
+                    "header" => $this->load->view("template/sadmin_header", $data, TRUE),
+                    "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
+                ];
+
+                // API Execute
+                $url = site_url().'/api/dist/guru_ajar';
+                
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $response = curl_exec($ch);
+                curl_close($ch);
+
+                $res = json_decode($response);
+
+                if($res->status == true) {
+                    $data['kelas'] = $res->kelas;
+                    $data['guru'] = $res->guru;
+                    $data['mapel'] = $res->mapel;
+                    $data['id_semester'] = $res->id_semester;
+                } else {
+                    $data['kelas'] = [];
+                    $data['guru'] = [];
+                    $data['mapel'] = [];
+                    $data['id_semester'] = "";
+                }
+
+                $this->load->view("kurikulum/dist_guruajar", $data);
+            } else if($session['session_role'] == "guru") {
                 $data = [
                     "header" => $this->load->view("template/guru_header", $data, TRUE),
                     "footer" => $this->load->view("template/guru_footer", '', TRUE)
@@ -120,7 +180,7 @@ class Distribusi extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru") {
+            if($session['session_role'] == "guru" || $session['session_role'] == "sadmin") {
                 if(strpos($session['session_status'], '1')) {
                     $data = [
                         "kelas" => $this->input->post("kelas"),
@@ -161,7 +221,7 @@ class Distribusi extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru") {
+            if($session['session_role'] == "guru" || $session['session_role'] == "sadmin") {
                 if(strpos($session['session_status'], '1')) {
                     $data = [
                         "id_semester" => $this->input->post("id_semester"),
