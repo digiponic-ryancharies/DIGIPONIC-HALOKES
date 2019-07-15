@@ -4,7 +4,7 @@ class Kelas extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("M_session");
-        //$this->load->model("M_siswa");
+        $this->load->library("Curl");
     }
 
     function index() {
@@ -23,15 +23,7 @@ class Kelas extends CI_Controller {
             if($session['session_role'] == "superadmin") {
                 // API Execute
                 $url = site_url().'/api/kelas/all';
-                
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
-                curl_close($ch);
-
-                $res = json_decode($response);
+                $res = $this->curl->get($url);
 
                 if($res->status == true) {
                     $data['kelas'] = $res->data;
@@ -51,16 +43,8 @@ class Kelas extends CI_Controller {
                 if(strpos($session['session_status'], '2')) {
                     // API Execute
                     $url = site_url().'/api/kelas/all';
-                    
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-                    curl_close($ch);
-
-                    $res = json_decode($response);
-
+                    $res = $this->curl->get($url);
+    
                     if($res->status == true) {
                         $data['kelas'] = $res->data;
                         $data['id_semester'] = $res->id_semester;
@@ -93,7 +77,7 @@ class Kelas extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru" || $session['session_role'] == "sadmin") {
+            if($session['session_role'] == "guru" || $session['session_role'] == "superadmin") {
                 if(strpos($session['session_status'], '2')) {
                     $data = [
                         'id_semester' => $this->input->post('id_semester'),
@@ -103,16 +87,7 @@ class Kelas extends CI_Controller {
                     ];
 
                     $url = site_url().'/api/kelas/tambah';
-
-                    $ch = curl_init($url);
-                    curl_setopt($ch, CURLOPT_POST, true);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-
-                    curl_close($ch);
-
-                    $res = json_decode($response);
+                    $res = $this->curl->post($url,$data);
 
                     $this->session->set_flashdata('do', "tambah_kelas");
                     $this->session->set_flashdata('status', $res->status);

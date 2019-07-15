@@ -15,19 +15,15 @@ class Mapel extends REST_Controller {
         $mapel = $this->M_mapel->getAllMapel();
         $grupkur = $this->M_kurikulum->getAllGrupKurikulum();
 
-    	if($mapel == TRUE) {
-    		$this->response([
-                'mapel' => $mapel,
-                "grupkur" => $grupkur,
-                'message' => "Proses berhasil",
-                'status' => TRUE
-            ], REST_Controller::HTTP_OK);
-    	} else {
-    		$this->response([
-                'message' => "Proses gagal",
-    			'status' => FALSE
-        	], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
-    	}
+        $mapel = ($mapel->num_rows() != 0 ? $mapel->result_array() : []);
+        $grupkur = ($grupkur->num_rows() != 0 ? $grupkur->result_array() : []);
+    	
+        $this->response([
+            'mapel' => $mapel,
+            "grupkur" => $grupkur,
+            'message' => "Proses berhasil",
+            'status' => TRUE
+        ], REST_Controller::HTTP_OK);
     }
 
     function tambah_post() {

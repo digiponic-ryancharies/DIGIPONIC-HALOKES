@@ -16,7 +16,7 @@ class M_mapel extends CI_Model {
 		$this->db->where("tmm.status", 1);
 		$sql = $this->db->get("tbl_master_mapel tmm");
 
-		return $sql->result_array();
+		return $sql;
 	}
 
 	function getMapelAktifByKurikulum() {

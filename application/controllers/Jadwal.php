@@ -60,14 +60,14 @@ class Jadwal extends CI_Controller {
 			];
 
 			if($session['session_role'] == "guru" || $session['session_role'] == "superadmin") {
-				$id = $this->input->post("id");
 				$data = [
+					"jadwal" => $this->input->post("id"),
 					"hari" => $this->input->post("hari"),
 					"jam_awal" => $this->input->post("jam_awal"),
 					"jam_akhir" => $this->input->post("jam_akhir")
 				];
 
-				$url = site_url()."/api/jadwal/aturjadwal/".$id;
+				$url = site_url()."/api/jadwal/aturjadwal";
 				$res = $this->curl->post($url,$data);
 
                 $this->session->set_flashdata('do', "atur_jadwal");

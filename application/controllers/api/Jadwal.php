@@ -14,29 +14,28 @@ class Jadwal extends REST_Controller {
         $ids = $this->M_app->getSemesterActive();
         $jadwal = $this->M_jadwal->getAllJadwal($ids);
 
-    	if($jadwal == TRUE) {
-    		$this->response([
-                'data' => $jadwal,
-                'message' => "Proses berhasil",
-                'status' => TRUE
-            ], REST_Controller::HTTP_OK);
-    	} else {
-    		$this->response([
-                'message' => "Proses gagal",
-    			'status' => FALSE
-        	], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
-    	}
+        $jadwal = ($jadwal->num_rows() != 0 ? $jadwal->result_array() : []);
+
+    	$this->response([
+            'data' => $jadwal,
+            'message' => "Proses berhasil",
+            'status' => TRUE
+        ], REST_Controller::HTTP_OK);
     }
 
-    function aturjadwal_post($id) {
+    function aturjadwal_post() {
         $data = [
+            "id_mapel_jadwal_detail" => $this->M_app->getLatestid('id_mapel_jadwal_detail', 'tbl_mapel_jadwal_detail'),
+            "id_mapel_jadwal_detail_url" => $this->M_app->randomString(20),
+            "id_mapel_jadwal" => $this->M_jadwal->getJadwalIDFromURL($this->post("jadwal")),
             "jadwal_hari" => $this->post("hari"),
-            "jadwal_jampel" => $this->post("jam_awal")." - ".$this->post("jam_akhir"),
-            "modified_at" => $this->M_app->datetimeNow()
+            "jadwal_jampel_awal" => $this->post("jam_awal"),
+            "jadwal_jampel_akhir" => $this->post("jam_akhir"),
+            "created_at" => $this->M_app->datetimeNow()
         ];
 
-        $proc = $this->M_jadwal->aturJadwalMapel($data,$id);
-        if ($proc == TRUE) {
+        $proc = $this->M_jadwal->aturJadwalMapel($data);
+        if ($proc) {
             $this->response([
                 'message' => "<strong>Berhasil</strong>, pengaturan jadwal pelajaran berhasil dilakukan",
                 'status'  => TRUE

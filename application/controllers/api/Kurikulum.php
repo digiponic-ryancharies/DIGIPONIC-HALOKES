@@ -13,37 +13,28 @@ class Kurikulum extends REST_Controller {
     function grupkur_get() {
         $proc = $this->M_kurikulum->getAllGrupKurikulum();
 
-        if($proc == TRUE) {
-            $this->response([
-                'data' => $proc,
-                'message' => "Proses berhasil",
-                'status' => TRUE
-            ], REST_Controller::HTTP_OK);
-        } else {
-            $this->response([
-                'message' => "Proses gagal",
-                'status' => FALSE
-            ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
-        }
+        $kur = ($proc->num_rows() != 0 ? $proc->result_array() : []);
+
+        $this->response([
+            'data' => $kur,
+            'message' => "Proses berhasil",
+            'status' => TRUE
+        ], REST_Controller::HTTP_OK);
     }
 
     function grupmapel_get() {
         $gmapel = $this->M_kurikulum->getAllGrupMapel();
         $gkur = $this->M_kurikulum->getAllGrupKurikulum();
 
-        if($gmapel == TRUE) {
-            $this->response([
-                'grupmapel' => $gmapel,
-                'grupkur' => $gkur,
-                'message' => "Proses berhasil",
-                'status' => TRUE
-            ], REST_Controller::HTTP_OK);
-        } else {
-            $this->response([
-                'message' => "Proses gagal",
-                'status' => FALSE
-            ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
-        }
+        $gmapel = ($gmapel->num_rows() != 0 ? $gmapel->result_array() : []);
+        $gkur = ($gkur->num_rows() != 0 ? $gkur->result_array() : []);
+
+        $this->response([
+            'grupmapel' => $gmapel,
+            'grupkur' => $gkur,
+            'message' => "Proses berhasil",
+            'status' => TRUE
+        ], REST_Controller::HTTP_OK);
     }
 
     function tambah_kur_post() {

@@ -66,7 +66,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>NIGN</th>
+                                            <th>NIP</th>
                                             <th>Nama Guru</th>
                                             <th>Email</th>
                                             <th>Status</th>
@@ -77,7 +77,7 @@
                                         <?php $no=1; foreach($guru as $row) { ?>
                                         <tr>
                                             <td><?php echo $no ?></td>
-                                            <td><?php echo $row->nign ?></td>
+                                            <td><?php echo $row->nip ?></td>
                                             <td><?php echo $row->nama_guru ?></td>
                                             <td><?php echo $row->email_guru ?></td>
                                             <td><?php echo ($row->status == 1 ? "Aktif" : "Tidak Aktif") ?></td>

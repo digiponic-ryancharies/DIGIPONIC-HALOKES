@@ -25,3 +25,7 @@ CHANGELOG DB
 
 12 Juli 2019
 (+) tbl_super_admin - table
+
+14 Juli 2019
+(-) tbl_mapel_jadwal - field - jadwal_hari, jadwal_jampel
+(+) tbl_mapel_jadwal_detail - table

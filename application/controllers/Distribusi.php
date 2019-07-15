@@ -180,7 +180,7 @@ class Distribusi extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru" || $session['session_role'] == "sadmin") {
+            if($session['session_role'] == "guru" || $session['session_role'] == "superadmin") {
                 if(strpos($session['session_status'], '1')) {
                     $data = [
                         "kelas" => $this->input->post("kelas"),
@@ -221,7 +221,7 @@ class Distribusi extends CI_Controller {
                 "usernama" => $session['session_nama']
             ];
 
-            if($session['session_role'] == "guru" || $session['session_role'] == "sadmin") {
+            if($session['session_role'] == "guru" || $session['session_role'] == "superadmin") {
                 if(strpos($session['session_status'], '1')) {
                     $data = [
                         "id_semester" => $this->input->post("id_semester"),

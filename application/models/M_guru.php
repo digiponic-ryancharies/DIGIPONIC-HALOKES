@@ -6,8 +6,8 @@ class M_guru extends CI_Model {
     }
 
     function getAll() {
-        $this->db->select("id_guru_url AS _id, IFNULL(guru_nign,'-') AS nign,
-                           LTRIM(CONCAT(IFNULL(guru_gelar_depan,''),' ',guru_nama,' ',guru_gelar_belakang)) AS nama_guru,
+        $this->db->select("id_guru_url AS _id, IFNULL(guru_nip,'-') AS nip,
+                           TRIM(CONCAT(IFNULL(guru_gelar_depan,''),' ',guru_nama,' ',IFNULL(guru_gelar_belakang,''))) AS nama_guru,
                            IFNULL(guru_email,'-') AS email_guru, status");
         $this->db->where("status", 1);
         $sql = $this->db->get("tbl_master_guru");
@@ -28,7 +28,7 @@ class M_guru extends CI_Model {
 
     function getGuruPengajarAktif($ids) {
         $this->db->select("tmj.id_mapel_jadwal_url AS _id,
-                           LTRIM(CONCAT(IFNULL(tmg.guru_gelar_depan,''),' ',tmg.guru_nama,' ',tmg.guru_gelar_belakang)) AS guru,
+                           TRIM(CONCAT(IFNULL(guru_gelar_depan,''),' ',guru_nama,' ',IFNULL(guru_gelar_belakang,''))) AS guru,
                            tmm.mapel_nama AS mapel,
                            CONCAT(tk.kelas_tingkat,tk.kelas_abjad) AS kelas,
                            tmj.status AS status");

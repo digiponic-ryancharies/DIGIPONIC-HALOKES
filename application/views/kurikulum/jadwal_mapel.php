@@ -82,7 +82,7 @@
                                                 <td><?php echo $row->kelas ?></td>
                                                 <td><?php echo $row->mapel ?></td>
                                                 <td><?php echo $row->guru ?></td>
-                                                <td><?php echo $row->jam ?></td>
+                                                <td><?php echo $row->awal." - ".$row->akhir ?></td>
                                                 <td>
                                                     <a href="#" class="btn btn-primary btn-xs" onclick="detailJadwal('<?php echo $row->_id ?>')">Atur</a>
                                                 </td>
@@ -112,7 +112,7 @@
                 <div class="modal-body">
                     <div class="form-row">
                         <input type="hidden" name="id" id="idjadwal">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group mb-1">
                                 <label for="name" class="col-form-label s-12">KELAS</label>
                                 <select name="hari" class="form-control">
@@ -127,21 +127,21 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="name" class="col-form-label s-12">JAM AWAL</label>
                                 <select name="jam_awal" class="form-control">
-                                    <?php for($i=1; $i<9; $i++) { 
+                                    <?php for($i=1; $i<11; $i++) { 
                                         echo "<option value='".$i."'>".$i."</option>";
                                     } ?>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="name" class="col-form-label s-12">JAM AKHIR</label>
                                 <select name="jam_akhir" class="form-control">
-                                    <?php for($i=1; $i<9; $i++) { 
+                                    <?php for($i=1; $i<11; $i++) { 
                                         echo "<option value='".$i."'>".$i."</option>";
                                     } ?>
                                 </select>

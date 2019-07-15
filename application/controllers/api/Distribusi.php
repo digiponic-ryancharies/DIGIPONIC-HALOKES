@@ -20,9 +20,9 @@ class Distribusi extends REST_Controller {
         $kelas = $this->M_kelas->getKelasTanpaWakel($ids);
         $guru = $this->M_guru->getGuruBelumWakel($ids);
 
-        $kelas = (($kelas->num_rows() != 0) ? $kelas->result_array() : []);
-        $wakel = (($wakel->num_rows() != 0) ? $wakel->result_array() : []);
-        $guru = (($guru->num_rows() != 0) ? $guru->result_array() : []);
+        $kelas = ($kelas->num_rows() != 0 ? $kelas->result_array() : []);
+        $wakel = ($wakel->num_rows() != 0 ? $wakel->result_array() : []);
+        $guru = ($guru->num_rows() != 0 ? $guru->result_array() : []);
 
         $this->response([
             'kelas' => $kelas,
@@ -113,11 +113,17 @@ class Distribusi extends REST_Controller {
         ];
 
         $proc = $this->M_distribusi->tambahGuruAjar($data);
-        if($proc == TRUE) {
+
+        if($proc == 0) {
             $this->response([
                 'message' => "<strong>Berhasil</strong>, atur guru pengajar berhasil dilakukan",
                 'status' => TRUE
             ], REST_Controller::HTTP_OK);
+        } else if($proc == 1) {
+            $this->response([
+                'message' => "<strong>Gagal</strong>, data sudah tersedia di database",
+                'status' => FALSE
+            ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
         } else {
             $this->response([
                 'message' => "<strong>Gagal</strong>, terjadi kesalahan pada pengaturan",

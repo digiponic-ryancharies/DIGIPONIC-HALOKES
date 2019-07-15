@@ -58,7 +58,7 @@
                                     <input type="hidden" name="id_semester" value="<?php echo $id_semester ?>">
                                     <div class="form-group mb-1">
                                         <label for="name" class="col-form-label s-12">MAPEL</label>
-                                        <select name="mapel" class="form-control">
+                                        <select name="mapel" class="custom-select select2" required>
                                             <option value="">-- Pilih Mapel --</option>
                                             <?php foreach($mapel as $rowm) { ?>
                                                 <option value="<?php echo $rowm->_id ?>"><?php echo $rowm->nama_mapel ?></option>
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="form-group mb-1">
                                         <label for="name" class="col-form-label s-12">GURU</label>
-                                        <select name="guru" class="form-control">
+                                        <select name="guru" class="custom-select select2" required>
                                             <option value="">-- Pilih Guru --</option>
                                             <?php foreach($guru as $rowg) { ?>
                                                 <option value="<?php echo $rowg->_id ?>"><?php echo $rowg->nama_guru ?></option>
@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="form-group m-0">
                                         <label for="name" class="col-form-label s-12">KELAS</label>
-                                        <select name="kelas" class="form-control">
+                                        <select name="kelas" class="custom-select select2" required>
                                             <option value="">-- Pilih Kelas --</option>
                                             <?php foreach($kelas as $rowk) { ?>
                                                 <option value="<?php echo $rowk->_id ?>"><?php echo $rowk->nama_kelas ?></option>

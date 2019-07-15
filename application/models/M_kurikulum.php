@@ -10,7 +10,7 @@ class M_kurikulum extends CI_Model {
 		$this->db->where("status", 1);
 		$sql = $this->db->get("tbl_mapel_kurikulum");
 
-		return $sql->result_array();
+		return $sql;
 	}
 
 	function getAllGrupMapel() {
@@ -22,7 +22,7 @@ class M_kurikulum extends CI_Model {
 		$this->db->where("tmg.status", 1);
 		$sql = $this->db->get("tbl_mapel_grup tmg");
 
-		return $sql->result_array();
+		return $sql;
 	}
 
 	function getIDGrupKurikulum($id) {
