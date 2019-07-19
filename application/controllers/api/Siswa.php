@@ -67,4 +67,27 @@ class Siswa extends REST_Controller {
             ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    function baru_all_get() {
+        $proc = $this->M_siswa->getAllSiswaBaru();
+
+        if($proc == TRUE) {
+            $result = [];
+            foreach ($proc as $r){
+                $r['rerata_un'] = (int)($r['un_indo']+$r['un_mat']+$r['un_ing'])/3;
+                $r['jumlah_un'] = (int)($r['un_indo']+$r['un_mat']+$r['un_ing'])/10;
+                $result[] = $r;
+            }
+            $this->response([
+                'data' => $result,
+                'message' => "Proses berhasil",
+                'status' => TRUE
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'message' => "Proses gagal",
+                'status' => FALSE
+            ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
