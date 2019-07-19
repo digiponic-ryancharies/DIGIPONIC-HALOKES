@@ -1,3 +1,5 @@
+<?php echo $header ?>
+
 <div class="page has-sidebar-left">
     <div>
         <header class="blue accent-3 relative">
@@ -258,3 +260,5 @@
         </div>
     </div>
 </div>
+
+<?php echo $footer ?>
