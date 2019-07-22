@@ -1,11 +1,15 @@
 <?php
-class M_kelas extends CI_Model {
-    public function __construct() {
+
+class M_kelas extends CI_Model
+{
+    public function __construct()
+    {
         parent::__construct();
         $this->load->database();
     }
 
-    function getAll($ids) {
+    function getAll($ids)
+    {
         $this->db->select("k.id_kelas_url AS _id,
                            CONCAT(k.kelas_tingkat,k.kelas_abjad) AS nama_kelas,
                            COUNT(tkd.id_kelas_detail) AS jml_siswa,
@@ -21,12 +25,14 @@ class M_kelas extends CI_Model {
         return $sql->result_array();
     }
 
-    function tambahKelas($data) {
+    function tambahKelas($data)
+    {
         $sql = $this->db->insert("tbl_kelas", $data);
         return $sql;
     }
 
-    function getKelasTanpaWakel($ids) {
+    function getKelasTanpaWakel($ids)
+    {
         $this->db->select("tk.id_kelas_url AS _id,
                            CONCAT(tk.kelas_tingkat, tk.kelas_abjad) AS nama_kelas");
         $this->db->join("tbl_kelas_wali tkw", "tk.id_kelas = tkw.id_kelas", "left");
@@ -40,7 +46,8 @@ class M_kelas extends CI_Model {
         return $sql;
     }
 
-    function getKelasIDFromURL($idu) {
+    function getKelasIDFromURL($idu)
+    {
         $this->db->select("id_kelas");
         $this->db->where("id_kelas_url", $idu);
 
@@ -48,5 +55,37 @@ class M_kelas extends CI_Model {
         $res = $sql->row();
         return $res->id_kelas;
     }
+
+    function getDaftarKelas()
+    {
+        $this->db->select("k.id_kelas_url AS _id,
+                           k.id_kelas,
+                           CONCAT(k.kelas_tingkat,k.kelas_abjad) AS nama_kelas,
+                           COUNT(tkd.id_kelas_detail) AS jml_siswa");
+        $this->db->join("tbl_kelas_detail tkd", "k.id_kelas = tkd.id_kelas", "left");
+        $this->db->where("k.status", 1);
+        $this->db->group_by("k.id_kelas");
+        $sql = $this->db->get("tbl_kelas k");
+        $rKelas = $sql->result_array();
+        $result = [];
+        foreach ($rKelas as $row) {
+            $this->db->select("tms.id_siswa_url AS _id, 
+						   tms.siswa_nama AS nama");
+            $this->db->join("tbl_master_siswa tms", "tkd.id_siswa = tms.id_siswa", "left");
+            $this->db->where("tkd.id_kelas", $row['id_kelas']);
+            $sql2 = $this->db->get("tbl_kelas_detail tkd");
+            $row['siswa'] = $sql2->result_array();
+            $result[] = $row;
+        }
+
+        return $result;
+    }
+
+    function aturKelasSiswa($dataSiswa)
+    {
+        $sql = $this->db->insert_batch('tbl_kelas_detail', $dataSiswa);
+        return $sql;
+    }
 }
+
 ?>

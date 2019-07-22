@@ -45,6 +45,16 @@ class M_siswa extends CI_Model
         return $sql->result_array();
     }
 
+    function getSiswaIDFromURL($idu)
+    {
+        $this->db->select("id_siswa");
+        $this->db->where("id_siswa_url", $idu);
+
+        $sql = $this->db->get("tbl_master_siswa");
+        $res = $sql->row();
+        return $res->id_siswa;
+    }
+
     function tambahSiswaMaster($data)
     {
         $sql = $this->db->insert("tbl_master_siswa", $data);
