@@ -62,3 +62,6 @@ $route['api/dist/wali_kelas'] = 'api/distribusi/walikelas';
 $route['api/dist/atur_wakel'] = 'api/distribusi/aturwakel';
 $route['api/dist/guru_ajar'] = 'api/distribusi/guruajar';
 $route['api/dist/atur_guruajar'] = 'api/distribusi/aturguruajar';
+
+// View Route
+$route['presensi/ekskul/detail'] = 'presensi/ekskul_detail';

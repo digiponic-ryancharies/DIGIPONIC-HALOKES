@@ -156,7 +156,7 @@ class Guru extends CI_Controller {
 
                 $this->session->set_flashdata('do', "tambah_guru");
                 $this->session->set_flashdata('status', $res->status);
-                $this->session->set_flashdata('msg', $res->message);
+                $this->session->set_flashdata('msg', (isset($res->message) ? $res->message : $res->error));
                 redirect("guru");
             }
         }

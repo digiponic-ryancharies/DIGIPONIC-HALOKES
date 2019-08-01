@@ -3,6 +3,7 @@
 class Mapel extends CI_Controller {
     public function __construct() {
         parent::__construct();
+        $this->load->library("Curl");
         $this->load->model("M_session");
         $this->load->model("M_kurikulum");
     }
@@ -27,15 +28,7 @@ class Mapel extends CI_Controller {
                 ];
 
                 $url = site_url().'/api/mapel/all';
-                
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
-                curl_close($ch);
-
-                $res = json_decode($response);
+                $res = $this->curl->get($url);
 
                 if($res->status == true) {
                     $data['mapel'] = $res->mapel;
@@ -54,15 +47,7 @@ class Mapel extends CI_Controller {
 
                 if(strpos($session['session_status'], '1')) {
                     $url = site_url().'/api/mapel/all';
-                
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-                    curl_close($ch);
-
-                    $res = json_decode($response);
+                    $res = $this->curl->get($url);
 
                     if($res->status == true) {
                         $data['mapel'] = $res->mapel;
@@ -105,20 +90,11 @@ class Mapel extends CI_Controller {
                     ];
 
                     $url = site_url().'/api/mapel/tambah';
-
-                    $ch = curl_init($url);
-                    curl_setopt($ch, CURLOPT_POST, true);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-
-                    curl_close($ch);
-
-                    $res = json_decode($response);
+                    $res = $this->curl->post($url,$data);
 
                     $this->session->set_flashdata('do', "tambah_mapel");
                     $this->session->set_flashdata('status', $res->status);
-                    $this->session->set_flashdata('msg', $res->message);
+                    $this->session->set_flashdata('msg', (isset($res->message) ? $res->message : $res->error));
                     redirect('mapel');
                 }
             } else {

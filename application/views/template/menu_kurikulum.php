@@ -72,8 +72,8 @@
     <ul class="treeview-menu">
         <li><a href="<?php echo site_url('distribusi/wali_kelas') ?>"><i class="icon icon-circle-o"></i>Atur Wali Kelas</a></li>
         <li><a href="<?php echo site_url('distribusi/guru_pengajar') ?>"><i class="icon icon-circle-o"></i>Atur Guru Pengajar</a></li>
-        <li><a href="#"><i class="icon icon-circle-o"></i>Atur Pembina Ekstrakurikuler</a></li>
-        <li><a href="#"><i class="icon icon-circle-o"></i>Atur Anggota Ekstrakurikuler</a></li>
+        <li><a href="<?php echo site_url('distribusi/pembina_ekskul') ?>"><i class="icon icon-circle-o"></i>Atur Pembina Ekstrakurikuler</a></li>
+        <li><a href="<?php echo site_url('distribusi/anggota_ekskul') ?>"><i class="icon icon-circle-o"></i>Atur Anggota Ekstrakurikuler</a></li>
     </ul>
 </li>
 <li class="treeview">
@@ -84,8 +84,19 @@
     </a>
     <ul class="treeview-menu">
         <li><a href="<?php echo site_url('jadwal/mapel') ?>"><i class="icon icon-circle-o"></i>Jadwal Pelajaran</a></li>
-        <li><a href="<?php echo site_url('jadwal/ekskul') ?>"><i class="icon icon-circle-o"></i>Jadwal Ekstrakurikuler</a></li>
         <li><a href="<?php echo site_url('jadwal/ujian') ?>"><i class="icon icon-circle-o"></i>Jadwal Ujian</a></li>
         <li><a href="<?php echo site_url('jadwal/kalender_ak') ?>"><i class="icon icon-circle-o"></i>Kalender Akademik</a></li>
+    </ul>
+</li>
+<li class="treeview">
+    <a href="#">
+        <i class="icon icon-cog blue-text s-18"></i>
+        <span>Pengaturan Sekolah</span>
+        <i class="icon icon-angle-left s-18 pull-right"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="#"><i class="icon icon-circle-o"></i>Tahun Pelajaran</a></li>
+        <li><a href="#"><i class="icon icon-circle-o"></i>Semester</a></li>
+        <li><a href="#"><i class="icon icon-circle-o"></i>Jam Pelajaran Sekolah</a></li>
     </ul>
 </li>

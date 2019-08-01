@@ -3,6 +3,7 @@
 class Login extends CI_Controller {
     public function __construct() {
         parent::__construct();
+        $this->load->library("Curl");
         $this->load->model("M_session");
     }
 
@@ -17,16 +18,7 @@ class Login extends CI_Controller {
     	];
 
     	$url = site_url().'/api/auth/login';
-
-    	$ch = curl_init($url);
-    	curl_setopt($ch, CURLOPT_POST, true);
-    	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    	$response = curl_exec($ch);
-
-    	curl_close($ch);
-
-    	$res = json_decode($response);
+        $res = $this->curl->post($url,$data);
     	$data = $res->data;
 
     	if($res->status) {

@@ -3,6 +3,7 @@
 class Kurikulum extends CI_Controller {
     public function __construct() {
         parent::__construct();
+        $this->load->library("Curl");
         $this->load->model("M_session");
     }
 
@@ -26,21 +27,9 @@ class Kurikulum extends CI_Controller {
                 ];
 
                 $url = site_url().'/api/kurikulum/grupkur';
-                
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
-                curl_close($ch);
+                $res = $this->curl->get($url);
 
-                $res = json_decode($response);
-
-                if($res->status == true) {
-                    $data['grupkur'] = $res->data;
-                } else {
-                    $data['grupkur'] = [];
-                }
+                $data['grupkur'] = ($res->status == true ? $res->data : []);
 
                 $this->load->view("kurikulum/kurikulum_grup", $data);
             } else if($session['session_role'] == "guru") {
@@ -51,21 +40,9 @@ class Kurikulum extends CI_Controller {
 
                 if(strpos($session['session_status'], '1')) {
                     $url = site_url().'/api/kurikulum/grupkur';
-                
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-                    curl_close($ch);
+                    $res = $this->curl->get($url);
 
-                    $res = json_decode($response);
-
-                    if($res->status == true) {
-                        $data['grupkur'] = $res->data;
-                    } else {
-                        $data['grupkur'] = [];
-                    }
+                    $data['grupkur'] = ($res->status == true ? $res->data : []);
 
                     $this->load->view("kurikulum/kurikulum_grup", $data);
                 }
@@ -97,15 +74,7 @@ class Kurikulum extends CI_Controller {
                 ];
 
                 $url = site_url().'/api/kurikulum/grupmapel';
-                    
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
-                curl_close($ch);
-
-                $res = json_decode($response);
+                $res = $this->curl->get($url);
 
                 if($res->status == true) {
                     $data['grupmapel'] = $res->grupmapel;
@@ -124,15 +93,7 @@ class Kurikulum extends CI_Controller {
 
                 if(strpos($session['session_status'], '1')) {
                     $url = site_url().'/api/kurikulum/grupmapel';
-                    
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-                    curl_close($ch);
-
-                    $res = json_decode($response);
+                    $res = $this->curl->get($url);
 
                     if($res->status == true) {
                         $data['grupmapel'] = $res->grupmapel;
@@ -170,20 +131,11 @@ class Kurikulum extends CI_Controller {
                     ];
 
                     $url = site_url().'/api/kurikulum/tambah_kur';
-
-                    $ch = curl_init($url);
-                    curl_setopt($ch, CURLOPT_POST, true);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-
-                    curl_close($ch);
-
-                    $res = json_decode($response);
+                    $res = $this->curl->get($url,$data);
 
                     $this->session->set_flashdata('do', "tambah_grupkur");
                     $this->session->set_flashdata('status', $res->status);
-                    $this->session->set_flashdata('msg', $res->message);
+                    $this->session->set_flashdata('msg', (isset($res->message) ? $res->message : $res->error));
                     redirect('kurikulum/grup_kurikulum');
                 }
             }
@@ -212,20 +164,11 @@ class Kurikulum extends CI_Controller {
                     ];
 
                     $url = site_url().'/api/kurikulum/tambah_mapel';
-
-                    $ch = curl_init($url);
-                    curl_setopt($ch, CURLOPT_POST, true);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-
-                    curl_close($ch);
-
-                    $res = json_decode($response);
+                    $res = $this->curl->post($url,$data);
 
                     $this->session->set_flashdata('do', "tambah_grupmapel");
                     $this->session->set_flashdata('status', $res->status);
-                    $this->session->set_flashdata('msg', $res->message);
+                    $this->session->set_flashdata('msg', (isset($res->message) ? $res->message : $res->error));
                     redirect('kurikulum/grup_mapel');
                 }
             }

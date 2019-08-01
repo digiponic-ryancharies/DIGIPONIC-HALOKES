@@ -7,19 +7,19 @@
 </li>
 <li>
     <a href="#">
-    <i class="icon icon-basketball blue-text s-18"></i> 
+    <i class="icon icon-user-o blue-text s-18"></i> 
         <span>Data Karyawan</span>
     </a>
 </li>
 <li>
     <a href="#">
-    <i class="icon icon-basketball blue-text s-18"></i> 
+    <i class="icon icon-users blue-text s-18"></i> 
         <span>Grup Karyawan</span>
     </a>
 </li>
 <li>
     <a href="#">
-    <i class="icon icon-basketball blue-text s-18"></i> 
+    <i class="icon icon-notebook blue-text s-18"></i> 
         <span>Jadwal Piket</span>
     </a>
 </li>

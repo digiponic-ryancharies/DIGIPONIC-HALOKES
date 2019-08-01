@@ -14,10 +14,15 @@
     </ul>
 </li>
 <li>
-    <a href="<?php echo site_url('kelas') ?>">
+    <a href="#">
         <i class="icon icon-building-o blue-text s-18"></i>
-        <span>Data Kelas</span>
+        <span>Kelas</span>
+        <i class="icon icon-angle-left s-18 pull-right"></i>
     </a>
+    <ul class="treeview-menu">
+        <li><a href="<?php echo site_url('kelas') ?>"><i class="icon icon-circle-o"></i>Data Kelas</a></li>
+        <li><a href="<?php echo site_url('kelas/atur_siswa') ?>"><i class="icon icon-circle-o"></i>Atur Siswa ke Kelas</a></li>
+    </ul>
 </li>
 <li class="treeview">
     <a href="#">

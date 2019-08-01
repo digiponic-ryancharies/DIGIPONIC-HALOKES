@@ -3,6 +3,7 @@
 class Distribusi extends CI_Controller {
     public function __construct() {
         parent::__construct();
+        $this->load->library("Curl");
         $this->load->model("M_session");
         $this->load->model("M_mapel");
         $this->load->model("M_kelas");
@@ -30,15 +31,7 @@ class Distribusi extends CI_Controller {
 
                 // API Execute
                 $url = site_url().'/api/dist/wali_kelas';
-                
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
-                curl_close($ch);
-
-                $res = json_decode($response);
+                $res = $this->curl->get($url);
 
                 if($res->status == true) {
                     $data['kelas'] = $res->kelas;
@@ -60,13 +53,7 @@ class Distribusi extends CI_Controller {
                 if(strpos($session['session_status'], '1')) {
                     // API Execute
                     $url = site_url().'/api/dist/wali_kelas';
-                    
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-                    curl_close($ch);
+                    $res = $this->curl->get($url);
 
                     $res = json_decode($response);
 
@@ -107,15 +94,7 @@ class Distribusi extends CI_Controller {
 
                 // API Execute
                 $url = site_url().'/api/dist/guru_ajar';
-                
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
-                curl_close($ch);
-
-                $res = json_decode($response);
+                $res = $this->curl->get($url);
 
                 if($res->status == true) {
                     $data['kelas'] = $res->kelas;
@@ -139,13 +118,7 @@ class Distribusi extends CI_Controller {
                 if(strpos($session['session_status'], '1')) {
                     // API Execute
                     $url = site_url().'/api/dist/guru_ajar';
-                    
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-                    curl_close($ch);
+                    $res = $this->curl->get($url);
 
                     $res = json_decode($response);
 
@@ -162,6 +135,72 @@ class Distribusi extends CI_Controller {
                     }
 
                     $this->load->view("kurikulum/dist_guruajar", $data);
+                }
+            }
+        }
+    }
+
+    function pembina_ekskul() {
+        $session = $this->M_session->get_session();
+        if (!$session['session_userid'] && !$session['session_role']) {
+            /*$data['message'] = "<p>The page you requested was not found.</p>";
+            $this->load->view("errors/html/error_404", $data);*/
+            redirect("login");
+        } else {
+            $data = [
+                "userid" => $session['session_userid'],
+                "userstts" => $session['session_status'],
+                "usernama" => $session['session_nama']
+            ];
+
+            if($session['session_role'] == "superadmin") {
+                $data = [
+                    "header" => $this->load->view("template/sadmin_header", $data, TRUE),
+                    "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
+                ];
+
+                $this->load->view("kurikulum/dist_pembina_ekskul", $data);
+            } else if($session['session_role'] == "guru") {
+                $data = [
+                    "header" => $this->load->view("template/guru_header", $data, TRUE),
+                    "footer" => $this->load->view("template/guru_footer", '', TRUE)
+                ];
+                    
+                if(strpos($session['session_status'], '1')) {
+                    $this->load->view("kurikulum/dist_pembina_ekskul", $data);
+                }
+            }
+        }
+    }
+
+    function anggota_ekskul() {
+        $session = $this->M_session->get_session();
+        if (!$session['session_userid'] && !$session['session_role']) {
+            /*$data['message'] = "<p>The page you requested was not found.</p>";
+            $this->load->view("errors/html/error_404", $data);*/
+            redirect("login");
+        } else {
+            $data = [
+                "userid" => $session['session_userid'],
+                "userstts" => $session['session_status'],
+                "usernama" => $session['session_nama']
+            ];
+
+            if($session['session_role'] == "superadmin") {
+                $data = [
+                    "header" => $this->load->view("template/sadmin_header", $data, TRUE),
+                    "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
+                ];
+
+                $this->load->view("kurikulum/dist_anggota_ekskul", $data);
+            } else if($session['session_role'] == "guru") {
+                $data = [
+                    "header" => $this->load->view("template/guru_header", $data, TRUE),
+                    "footer" => $this->load->view("template/guru_footer", '', TRUE)
+                ];
+                    
+                if(strpos($session['session_status'], '1')) {
+                    $this->load->view("kurikulum/dist_anggota_ekskul", $data);
                 }
             }
         }
@@ -188,16 +227,7 @@ class Distribusi extends CI_Controller {
                     ];
 
                     $url = site_url().'/api/dist/atur_wakel';
-
-                    $ch = curl_init($url);
-                    curl_setopt($ch, CURLOPT_POST, true);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-
-                    curl_close($ch);
-
-                    $res = json_decode($response);
+                    $res = $this->curl->post($url,$data);
 
                     $this->session->set_flashdata('do', "atur_wakel");
                     $this->session->set_flashdata('status', $res->status);
@@ -231,20 +261,11 @@ class Distribusi extends CI_Controller {
                     ];
 
                     $url = site_url().'/api/dist/atur_guruajar';
-
-                    $ch = curl_init($url);
-                    curl_setopt($ch, CURLOPT_POST, true);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $response = curl_exec($ch);
-
-                    curl_close($ch);
-
-                    $res = json_decode($response);
+                    $res = $this->curl->post($url,$data);
 
                     $this->session->set_flashdata('do', "atur_guruajar");
                     $this->session->set_flashdata('status', $res->status);
-                    $this->session->set_flashdata('msg', $res->message);
+                    $this->session->set_flashdata('msg', (isset($res->message) ? $res->message : $res->error));
                     redirect("distribusi/guru_pengajar");
                 }
             }
