@@ -49,3 +49,11 @@ CHANGELOG
 - Buat library curl
 - API jadwal mengajar bagian tampil dan edit
 - Layout jadwal mengajar dan atur jadwal
+
+17 Juli 2019
+- Layout atur siswa ke kelas
+- Layout siswa baru 
+- Layout siswa mutasi
+
+24 Juli 2019
+- Layout Detail Presensi Ekskul
