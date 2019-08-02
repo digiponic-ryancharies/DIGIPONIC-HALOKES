@@ -8,7 +8,10 @@ class Distribusi extends CI_Controller {
         $this->load->model("M_mapel");
         $this->load->model("M_kelas");
         $this->load->model("M_guru");
+        $this->load->model("M_ekskul");
     }
+
+
 
     function wali_kelas() {
         $session = $this->M_session->get_session();
@@ -187,6 +190,11 @@ class Distribusi extends CI_Controller {
             ];
 
             if($session['session_role'] == "superadmin") {
+                $url = site_url().'/api/ekskul/all';
+                $res = $this->curl->get($url);
+
+                $data['ekskul'] = ($res->status == true ? $res->data : []);
+
                 $data = [
                     "header" => $this->load->view("template/sadmin_header", $data, TRUE),
                     "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
@@ -194,6 +202,11 @@ class Distribusi extends CI_Controller {
 
                 $this->load->view("kurikulum/dist_anggota_ekskul", $data);
             } else if($session['session_role'] == "guru") {
+                $url = site_url().'/api/ekskul/all';
+                $res = $this->curl->get($url);
+
+                $data['ekskul'] = ($res->status == true ? $res->data : []);
+
                 $data = [
                     "header" => $this->load->view("template/guru_header", $data, TRUE),
                     "footer" => $this->load->view("template/guru_footer", '', TRUE)
