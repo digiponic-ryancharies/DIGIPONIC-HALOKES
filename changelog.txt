@@ -57,3 +57,17 @@ CHANGELOG
 
 24 Juli 2019
 - Layout Detail Presensi Ekskul
+
+2 Agustus 2019
+- Layout Tahun Pelajaran
+- Layout Semester
+- Layout Jam Pelajaran
+
+9 Agustus 2019
+- Layout Kalender Akademik
+- Layour Detail kalender akademik
+
+10 Agustus 2019
+- Layout siswa alumni
+- Layout poin pelanggaran
+- Layout poin prestasi

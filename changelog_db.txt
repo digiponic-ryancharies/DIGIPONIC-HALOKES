@@ -29,3 +29,11 @@ CHANGELOG DB
 14 Juli 2019
 (-) tbl_mapel_jadwal - field - jadwal_hari, jadwal_jampel
 (+) tbl_mapel_jadwal_detail - table
+
+2 Agustus 2019
+(-) tbl_sys_tapel - field - tapel_tahun
+(+) tbl_sys_tapel - field - tapiel_deskripsi
+
+9 Agustus 2019
+(-) tbl_kalender_detail - field - id_tapel
+(+) tbl_info_kalender - field - id_tapel
