@@ -74,7 +74,15 @@
                                     <th>Jumlah Siswa</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+                                <?php $no=1; foreach($ekskul as $row) { ?>
+                                <tr>
+                                    <td><?php echo $no ?></td>
+                                    <td><?php echo $row->ekskul_nama ?></td>
+                                    <td>0</td>
+                                </tr>
+                                <?php $no++; } ?>
+                            </tbody>
                         </table>
                     </div>
                 </div>
