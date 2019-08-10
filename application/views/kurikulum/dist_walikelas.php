@@ -102,7 +102,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group mb-1">
                                                 <label for="name" class="col-form-label s-12">KELAS</label>
-                                                <select name="kelas" class="form-control">
+                                                <select name="kelas" class="custom-select select2" required>
                                                     <option value="">-- Pilih Kelas --</option>
                                                     <?php foreach($kelas as $rowk) { ?>
                                                         <option value="<?php echo $rowk->_id ?>"><?php echo $rowk->nama_kelas ?></option>
@@ -111,7 +111,7 @@
                                             </div>
                                             <div class="form-group m-0">
                                                 <label for="name" class="col-form-label s-12">GURU</label>
-                                                <select name="guru" class="form-control">
+                                                <select name="guru" class="custom-select select2" required>
                                                     <option value="">-- Pilih Guru --</option>
                                                     <?php foreach($guru as $rowg) { ?>
                                                         <option value="<?php echo $rowg->_id ?>"><?php echo $rowg->nama_guru ?></option>

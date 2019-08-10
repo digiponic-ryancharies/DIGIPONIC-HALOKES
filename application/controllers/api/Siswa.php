@@ -33,7 +33,6 @@ class Siswa extends REST_Controller {
     // 2 = Siswa Alumni
     // 3 = Siswa Mutasi
     function tambah_aktif_post() {
-
         $data = [
             "id_siswa" => "",
             "id_siswa_url" => $this->M_app->randomString(10),

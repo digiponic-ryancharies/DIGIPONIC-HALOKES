@@ -31,10 +31,10 @@
         <i class="icon icon-angle-left s-18 pull-right"></i>
     </a>
     <ul class="treeview-menu">
-        <li><a href="#"><i class="icon icon-circle-o"></i>Poin Pelanggaran</a></li>
-        <li><a href="#"><i class="icon icon-circle-o"></i>Pencatatan Pelanggaran</a></li>
-        <li><a href="#"><i class="icon icon-circle-o"></i>Poin Prestasi</a></li>
-        <li><a href="#"><i class="icon icon-circle-o"></i>Pengembangan Karakter</a></li>
+        <li><a href="<?php echo site_url('konseling/poin_pelanggaran') ?>"><i class="icon icon-circle-o"></i>Poin Pelanggaran</a></li>
+        <li><a href="<?php echo site_url('konseling/rekap_pelanggaran') ?>"><i class="icon icon-circle-o"></i>Pencatatan Pelanggaran</a></li>
+        <li><a href="<?php echo site_url('konseling/poin_prestasi') ?>"><i class="icon icon-circle-o"></i>Poin Prestasi</a></li>
+        <li><a href="<?php echo site_url('konseling/peng_karakter') ?>"><i class="icon icon-circle-o"></i>Pengembangan Karakter</a></li>
         <li><a href="#"><i class="icon icon-circle-o"></i>Bimbingan Konseling</a></li>
     </ul>
 </li>

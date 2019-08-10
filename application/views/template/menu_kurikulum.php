@@ -95,8 +95,8 @@
         <i class="icon icon-angle-left s-18 pull-right"></i>
     </a>
     <ul class="treeview-menu">
-        <li><a href="#"><i class="icon icon-circle-o"></i>Tahun Pelajaran</a></li>
-        <li><a href="#"><i class="icon icon-circle-o"></i>Semester</a></li>
-        <li><a href="#"><i class="icon icon-circle-o"></i>Jam Pelajaran Sekolah</a></li>
+        <li><a href="<?php echo site_url('pengaturan/tapel') ?>"><i class="icon icon-circle-o"></i>Tahun Pelajaran</a></li>
+        <li><a href="<?php echo site_url('pengaturan/semester') ?>"><i class="icon icon-circle-o"></i>Semester</a></li>
+        <li><a href="<?php echo site_url('pengaturan/jampel') ?>"><i class="icon icon-circle-o"></i>Jam Pelajaran Sekolah</a></li>
     </ul>
 </li>

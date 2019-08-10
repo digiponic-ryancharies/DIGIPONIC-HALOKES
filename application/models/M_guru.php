@@ -15,7 +15,8 @@ class M_guru extends CI_Model {
     }
 
     function getGuruBelumWakel($ids) {
-        $this->db->select("tmg.id_guru_url AS _id, tmg.guru_nama AS nama_guru");
+        $this->db->select("tmg.id_guru_url AS _id, 
+                           TRIM(CONCAT(IFNULL(tmg.guru_gelar_depan,''),' ',tmg.guru_nama,' ',IFNULL(tmg.guru_gelar_belakang,''))) AS nama_guru");
         $this->db->join("tbl_kelas tk", "tkw.id_kelas = tk.id_kelas");
         $this->db->join("tbl_master_guru tmg", "tkw.id_guru = tmg.id_guru", "right");
         $this->db->join("tbl_sys_semester tss", "tk.id_semester = tss.id_semester", "left");

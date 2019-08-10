@@ -53,11 +53,9 @@ $route['default_controller'] = 'dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-// Contoh Syntax ===> $route['pinginmu_url_e_yok_opo'] = 'jeneng_function_sing_arep_kok_dor';
-
 // API Route
 $route['api/siswa/aktif/all'] = 'api/siswa/aktif_all';
-$route['api/siswa/tambah/aktif'] = 'api/siswa/tambah_aktif';
+$route['api/siswa/aktif/tambah'] = 'api/siswa/tambah_aktif';
 $route['api/dist/wali_kelas'] = 'api/distribusi/walikelas';
 $route['api/dist/atur_wakel'] = 'api/distribusi/aturwakel';
 $route['api/dist/guru_ajar'] = 'api/distribusi/guruajar';
@@ -65,3 +63,4 @@ $route['api/dist/atur_guruajar'] = 'api/distribusi/aturguruajar';
 
 // View Route
 $route['presensi/ekskul/detail'] = 'presensi/ekskul_detail';
+$route['jadwal/kalender_ak/detail'] = 'jadwal/kalender_ak_detail';
