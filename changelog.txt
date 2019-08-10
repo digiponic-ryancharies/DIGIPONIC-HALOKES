@@ -69,5 +69,6 @@ CHANGELOG
 
 10 Agustus 2019
 - Layout siswa alumni
-- Layout poin pelanggaran
-- Layout poin prestasi
+- Layout poin pelanggaran dan tambah pelanggaran
+- Layout prestasi siswa dan tambah prestasi siswa
+- Layout detail prestasi dan tambah kontributor prestasi

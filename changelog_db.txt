@@ -35,5 +35,5 @@ CHANGELOG DB
 (+) tbl_sys_tapel - field - tapiel_deskripsi
 
 9 Agustus 2019
-(-) tbl_kalender_detail - field - id_tapel
-(+) tbl_info_kalender - field - id_tapel
+(-) tbl_kalender_detail - field - id_semester
+(+) tbl_info_kalender - field - id_semester
