@@ -72,7 +72,7 @@ class Konseling extends CI_Controller {
         }
     }
 
-    function poin_prestasi() {
+    function prestasi() {
         $session = $this->M_session->get_session();
         if (!$session['session_userid'] && !$session['session_role']) {
             /*$data['message'] = "<p>The page you requested was not found.</p>";
@@ -91,7 +91,7 @@ class Konseling extends CI_Controller {
                     "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
                 ];
 
-                $this->load->view("kesiswaan/kons_poin_prestasi", $data);
+                $this->load->view("kesiswaan/kons_prestasi", $data);
             } else if($session['session_role'] == "guru") {
                 $data = [
                     "header" => $this->load->view("template/guru_header", $data, TRUE),
@@ -99,7 +99,7 @@ class Konseling extends CI_Controller {
                 ];
 
                 if(strpos($session['session_status'], '2')) {
-                    $this->load->view("kesiswaan/kons_poin_prestasi", $data);
+                    $this->load->view("kesiswaan/kons_prestasi", $data);
                 }
             }
         }

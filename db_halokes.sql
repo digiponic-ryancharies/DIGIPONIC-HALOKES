@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 100136
  Source Host           : localhost:3306
- Source Schema         : db_halokes_ver1.0
+ Source Schema         : db_halokes
 
  Target Server Type    : MySQL
  Target Server Version : 100136
  File Encoding         : 65001
 
- Date: 10/08/2019 15:17:33
+ Date: 10/08/2019 21:58:10
 */
 
 SET NAMES utf8mb4;
@@ -138,14 +138,14 @@ DROP TABLE IF EXISTS `tbl_info_kalender`;
 CREATE TABLE `tbl_info_kalender`  (
   `id_kalendar` int(11) NOT NULL AUTO_INCREMENT,
   `id_kalendar_url` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `id_tapel` int(11) NULL DEFAULT NULL,
+  `id_semester` int(11) NULL DEFAULT NULL,
   `kalender_nama` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
   `modified_at` datetime(0) NULL DEFAULT NULL,
   `status` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id_kalendar`) USING BTREE,
-  INDEX `tapel_kalender`(`id_tapel`) USING BTREE,
-  CONSTRAINT `tapel_kalender` FOREIGN KEY (`id_tapel`) REFERENCES `tbl_sys_tapel` (`id_tapel`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  INDEX `kalender_smt`(`id_semester`) USING BTREE,
+  CONSTRAINT `kalender_smt` FOREIGN KEY (`id_semester`) REFERENCES `tbl_sys_semester` (`id_semester`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------

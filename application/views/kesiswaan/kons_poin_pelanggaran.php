@@ -37,7 +37,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Pelanggaran</th>
+                                            <th>Nama Sanksi</th>
                                             <th>Kategori</th>
                                             <th>Poin</th>
                                             <th>Detail</th>
@@ -71,7 +71,7 @@
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <div class="form-group m-0">
-                                                <label for="name" class="col-form-label s-12">NAMA PELANGGARAN</label>
+                                                <label for="name" class="col-form-label s-12">NAMA SANKSI</label>
                                                 <textarea id="desk" class="form-control r-0 light s-12" name="pelanggaran"></textarea>
                                             </div>
                                         </div>
@@ -79,9 +79,9 @@
                                     <div class="form-row">
                                         <div class="col-md-6">
                                             <div class="form-group m-0">
-                                                <label for="name" class="col-form-label s-12">KATEGORI</label>
+                                                <label for="name" class="col-form-label s-12">JENIS</label>
                                                 <select name="kategori" class="form-control r-0 light s-12">
-                                                    <option value="">-- Pilih Kategori --</option>
+                                                    <option value="">-- Pilih Jenis --</option>
                                                     <option value="ringan">Ringan</option>
                                                     <option value="sedang">Sedang</option>
                                                     <option value="berat">Berat</option>
@@ -90,7 +90,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group m-0">
-                                                <label for="name" class="col-form-label s-12">POIN PELANGGARAN</label>
+                                                <label for="name" class="col-form-label s-12">POIN SANKSI</label>
                                                 <input type="number" name="poin" class="form-control r-0 light s-12">
                                             </div>
                                         </div>
