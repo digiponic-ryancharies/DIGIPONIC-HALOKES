@@ -23,5 +23,15 @@ class Kalender_ak extends REST_Controller {
         ], REST_Controller::HTTP_OK);
     }
 
-    function detail_get() {}
+    function detail_get($kalN){
+    	$kalender = $this->M_kalender->getKalenderDetail($kalN);
+
+        $kalender = ($kalender->num_rows() != 0 ? $kalender->result_array() : []);
+
+    	$this->response([
+            'data' => $kalender,
+            'message' => "Proses berhasil",
+            'status' => TRUE
+        ], REST_Controller::HTTP_OK);
+    }
 }
