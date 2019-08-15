@@ -15,7 +15,7 @@
     </header>
     <div class="container-fluid my-3">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-8">
                 <div class="card no-b">
                     <div class="card-body">
                         <div class="card-title">Siswa</div>
@@ -28,58 +28,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr id="satu">
+                                <?php foreach($siswa as $rows) { ?>
+                                <tr id="<?php echo $rows->_id ?>">
                                     <td>
-                                        <input type="checkbox" name="id_siswa" class="id_siswa" value="satu">
+                                        <input type="checkbox" name="id_siswa" class="id_siswa" value="<?php echo $rows->_id ?>">
                                     </td>
-                                    <td>Test Nama 1</td>
-                                    <td>-</td>
+                                    <td><?php echo $rows->siswa_nama ?></td>
+                                    <td><?php echo $rows->kelas ?></td>
                                 </tr>
-                                <tr id="dua">
-                                    <td>
-                                        <input type="checkbox" name="id_siswa" class="id_siswa" value="dua">
-                                    </td>
-                                    <td>Test Nama 2</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr id="tiga">
-                                    <td>
-                                        <input type="checkbox" name="id_siswa" class="id_siswa" value="tiga">
-                                    </td>
-                                    <td>Test Nama 3</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr id="empat">
-                                    <td>
-                                        <input type="checkbox" name="id_siswa" class="id_siswa" value="empat">
-                                    </td>
-                                    <td>Test Nama 4</td>
-                                    <td>-</td>
-                                </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                         <button class="btn btn-primary my-2" id="pilih">Pilih</button>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="card no-b">
                     <div class="card-body">
                         <div class="card-title">Kelas</div>
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Kelas</th>
-                                    <th>Jumlah Siswa</th>
+                                    <th width="100">Kelas</th>
+                                    <th width="100">Jumlah Siswa</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach($kelas as $rowk) { ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>VII A</td>
-                                    <td>0</td>
+                                    <td><?php echo $rowk->nama_kelas ?></td>
+                                    <td><?php echo $rowk->jml_siswa ?></td>
                                 </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -105,14 +86,10 @@
                             <div class="form-group mt-2">
                                 <label for="name" class="col-form-label s-12">KELAS</label>
                                 <select name="hari" class="form-control">
-                                    <option value="">-- Pilih Hari --</option>
-                                    <option value="senin">Senin</option>
-                                    <option value="selasa">Selasa</option>
-                                    <option value="rabu">Rabu</option>
-                                    <option value="kamis">Kamis</option>
-                                    <option value="jumat">Jum'at</option>
-                                    <option value="sabtu">Sabtu</option>
-                                    <option value="minggu">Minggu</option>
+                                    <option value="">-- Pilih Kelas --</option>
+                                    <?php foreach($kelas as $rowk) { ?>
+                                    <option value="<?php echo $rowk->_id ?>"><?php echo $rowk->nama_kelas ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -127,7 +104,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-primary" onclick="showValue()">Simpan</button>
                 </div>
             </form>
         </div>
@@ -172,4 +149,8 @@
             $("#siswa_hasil").append(row);
         }
     });
+
+    function showValue() {
+        console.log(siswa);
+    }
 </script>

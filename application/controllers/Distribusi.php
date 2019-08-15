@@ -11,8 +11,6 @@ class Distribusi extends CI_Controller {
         $this->load->model("M_ekskul");
     }
 
-
-
     function wali_kelas() {
         $session = $this->M_session->get_session();
         if (!$session['session_userid'] && !$session['session_role']) {
@@ -157,6 +155,13 @@ class Distribusi extends CI_Controller {
             ];
 
             if($session['session_role'] == "superadmin") {
+                $url = site_url().'/api/dist/pembina_ekskul';
+                $res = $this->curl->get($url);
+
+                $data['ekskul'] = ($res->status == true ? $res->ekskul : []);
+                $data['guru'] = ($res->status == true ? $res->guru : []);
+                $data['pembina'] = ($res->status == true ? $res->pembina : []);
+
                 $data = [
                     "header" => $this->load->view("template/sadmin_header", $data, TRUE),
                     "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
@@ -164,6 +169,13 @@ class Distribusi extends CI_Controller {
 
                 $this->load->view("kurikulum/dist_pembina_ekskul", $data);
             } else if($session['session_role'] == "guru") {
+                $url = site_url().'/api/dist/pembina_ekskul';
+                $res = $this->curl->get($url);
+
+                $data['ekskul'] = ($res->status == true ? $res->ekskul : []);
+                $data['guru'] = ($res->status == true ? $res->guru : []);
+                $data['pembina'] = ($res->status == true ? $res->pembina : []);
+
                 $data = [
                     "header" => $this->load->view("template/guru_header", $data, TRUE),
                     "footer" => $this->load->view("template/guru_footer", '', TRUE)
@@ -194,6 +206,7 @@ class Distribusi extends CI_Controller {
                 $res = $this->curl->get($url);
 
                 $data['ekskul'] = ($res->status == true ? $res->data : []);
+                $data['siswa'] = ($res->status == true ? $res->siswa: []);
 
                 $data = [
                     "header" => $this->load->view("template/sadmin_header", $data, TRUE),
@@ -206,6 +219,7 @@ class Distribusi extends CI_Controller {
                 $res = $this->curl->get($url);
 
                 $data['ekskul'] = ($res->status == true ? $res->data : []);
+                $data['siswa'] = ($res->status == true ? $res->siswa: []);
 
                 $data = [
                     "header" => $this->load->view("template/guru_header", $data, TRUE),
@@ -283,5 +297,9 @@ class Distribusi extends CI_Controller {
                 }
             }
         }
+    }
+
+    function atur_anggota_ekskul() {
+        
     }
 }

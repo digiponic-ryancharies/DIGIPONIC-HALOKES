@@ -63,11 +63,12 @@ class Kelas extends REST_Controller
 
     function kelasSiswa_get()
     {
-        $proc = $this->M_kelas->getDaftarKelas();
-
-        if ($proc == TRUE) {
+        $kelas = $this->M_kelas->getDaftarKelas();
+        $siswa = $this->M_siswa->getSiswaKelas();
+        if ($kelas == TRUE) {
             $this->response([
-                'kelas'   => $proc,
+                'kelas'   => $kelas,
+                'siswa' => $siswa,
                 'message' => "Proses berhasil",
                 'status'  => TRUE
             ], REST_Controller::HTTP_OK);

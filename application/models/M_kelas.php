@@ -59,15 +59,14 @@ class M_kelas extends CI_Model
     function getDaftarKelas()
     {
         $this->db->select("k.id_kelas_url AS _id,
-                           k.id_kelas,
                            CONCAT(k.kelas_tingkat,k.kelas_abjad) AS nama_kelas,
                            COUNT(tkd.id_kelas_detail) AS jml_siswa");
         $this->db->join("tbl_kelas_detail tkd", "k.id_kelas = tkd.id_kelas", "left");
         $this->db->where("k.status", 1);
         $this->db->group_by("k.id_kelas");
         $sql = $this->db->get("tbl_kelas k");
-        $rKelas = $sql->result_array();
-        $result = [];
+        $res = $sql->result_array();
+        /*$result = [];
         foreach ($rKelas as $row) {
             $this->db->select("tms.id_siswa_url AS _id, 
 						   tms.siswa_nama AS nama");
@@ -76,9 +75,9 @@ class M_kelas extends CI_Model
             $sql2 = $this->db->get("tbl_kelas_detail tkd");
             $row['siswa'] = $sql2->result_array();
             $result[] = $row;
-        }
+        }*/
 
-        return $result;
+        return $res;
     }
 
     function aturKelasSiswa($dataSiswa)

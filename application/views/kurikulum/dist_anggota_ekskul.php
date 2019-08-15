@@ -15,57 +15,40 @@
     </header>
     <div class="container-fluid my-3">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-8">
                 <div class="card no-b">
                     <div class="card-body">
-                        <div class="card-title">Siswa</div>
+                        <div class="card-title">Data Siswa</div>
                         <table id="example2" class="table table-bordered table-hover data-tables" data-options='{"paging": false; "searching":false}'>
                             <thead>
                                 <tr>
                                     <th width="20"></th>
+                                    <th>NIS</th>
                                     <th>Nama Siswa</th>
                                     <th>Kelas</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr id="satu">
+                                <?php foreach($siswa as $rows) { ?>
+                                <tr id="<?php echo $rows->_id ?>">
                                     <td>
-                                        <input type="checkbox" name="id_siswa" class="id_siswa" value="satu">
+                                        <input type="checkbox" name="id_siswa" class="id_siswa" value="<?php echo $rows->_id ?>">
                                     </td>
-                                    <td>Test Nama 1</td>
-                                    <td>-</td>
+                                    <td><?php echo $rows->siswa_nis ?></td>
+                                    <td><?php echo $rows->siswa_nama ?></td>
+                                    <td><?php echo $rows->kelas ?></td>
                                 </tr>
-                                <tr id="dua">
-                                    <td>
-                                        <input type="checkbox" name="id_siswa" class="id_siswa" value="dua">
-                                    </td>
-                                    <td>Test Nama 2</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr id="tiga">
-                                    <td>
-                                        <input type="checkbox" name="id_siswa" class="id_siswa" value="tiga">
-                                    </td>
-                                    <td>Test Nama 3</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr id="empat">
-                                    <td>
-                                        <input type="checkbox" name="id_siswa" class="id_siswa" value="empat">
-                                    </td>
-                                    <td>Test Nama 4</td>
-                                    <td>-</td>
-                                </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                         <button class="btn btn-primary my-2" id="pilih">Pilih</button>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="card no-b">
                     <div class="card-body">
-                        <div class="card-title">Eksktrakurikuler</div>
+                        <div class="card-title">Data Eksktrakurikuler</div>
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -91,7 +74,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="atursiswa" tabindex="-1" role="dialog" aria-labelledby="aturjadwal" aria-hidden="true">
+<div class="modal fade" id="atursiswa" tabindex="-1" role="dialog" aria-labelledby="atursiswa" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
@@ -162,7 +145,7 @@
 
         for(let i=0; i<siswa.length; i++) {
             let no = i+1;
-            let namas = $("#"+siswa[i]).find("td:eq(1)").html();
+            let namas = $("#"+siswa[i]).find("td:eq(2)").html();
             let row = '<tr><td>'+no+'</td><td>'+namas+'</td></tr>';
             $("#siswa_hasil").append(row);
         }

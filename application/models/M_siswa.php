@@ -45,6 +45,16 @@ class M_siswa extends CI_Model
         return $sql->result_array();
     }
 
+    function getSiswaKelas() {
+        $this->db->select("tms.id_siswa_url AS _id, tms.siswa_nama, tms.siswa_nis,
+                           IFNULL((CONCAT(tk.kelas_tingkat,' ',tk.kelas_abjad)),'-') AS kelas");
+        $this->db->join("tbl_kelas tk", "tkd.id_kelas = tk.id_kelas");
+        $this->db->join("tbl_master_siswa tms", "tkd.id_siswa = tms.id_siswa", "right");
+        $sql = $this->db->get("tbl_kelas_detail tkd");
+
+        return $sql->result_array();
+    }
+
     function getSiswaIDFromURL($idu)
     {
         $this->db->select("id_siswa");

@@ -8,14 +8,17 @@ class Ekskul extends REST_Controller {
         parent::__construct();
         $this->load->model("M_app");
         $this->load->model("M_ekskul");
+        $this->load->model("M_siswa");
     }
 
     function all_get() {
         $proc = $this->M_ekskul->getAllEkskul();
+        $siswa = $this->M_siswa->getSiswaKelas();
 
     	if($proc == TRUE) {
     		$this->response([
                 'data' => $proc,
+                'siswa' => $siswa,
                 'message' => "Proses berhasil",
                 'status' => TRUE
             ], REST_Controller::HTTP_OK);

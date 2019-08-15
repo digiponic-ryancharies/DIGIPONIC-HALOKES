@@ -36,41 +36,34 @@
         <div class="container-fluid animatedParent animateOnce my-3">
             <div class="animated fadeInUpShort">
                 <div class="tab-content" id="v-pills-tabContent">
-                   <div class="tab-pane fade show active" id="informasi" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                       <div class="row">
-                           <div class="col-md-3">
-                               <div class="card mb-3">
-                                   <div class="card-header bg-white">
+                    <div class="tab-pane fade show active" id="informasi" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card bg-info text-white mb-3">
+                                    <div class="card-header"><b>Deskripsi</b></div>
+                                    <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                            the card's content.</p>
+                                    </div>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-header bg-white">
                                        <strong class="card-title">Pembina</strong>
-                                   </div>
-                                   <ul class="no-b">
-                                       <li class="list-group-item">
-                                           <a href="">
-                                               <div class="image mr-3 float-left">
-                                                   <img class="user_avatar" src="<?php echo base_url() ?>assets/img/dummy/u3.png" alt="User Image">
-                                               </div>
-                                               <h6 class="p-t-10">Alexander Pierce</h6>
-                                               <span><i class="icon-mobile-phone"></i>+62 896 506 91537</span>
-                                           </a>
-                                       </li>
-                                   </ul>
-                               </div>
-                           </div>
-                           <div class="col-md-9">
-                               <div class="row">
-                                   <div class="col-lg-4">
-                                       <div class="card r-3">
-                                           <div class="p-4">
-                                                <div class="float-right">
-                                                    <span class="icon-award s-48"></span>
-                                                </div>
-                                                <div class="counter-title">Prestasi</div>
-                                                <h5 class="sc-counter mt-3">5</h5>
-                                           </div>
-                                       </div>
-                                   </div>
-                                   <div class="col-lg-4">
-                                       <div class="card r-3">
+                                    </div>
+                                    <ul class="no-b">
+                                        <li class="list-group-item">
+                                            <div class="image mr-3 float-left">
+                                                <img class="user_avatar" src="<?php echo base_url() ?>assets/img/dummy/u3.png" alt="User Image">
+                                            </div>
+                                            <h6 class="p-t-10">Alexander Pierce</h6>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                   <div class="col-lg-6">
+                                       <div class="bg-info text-white card r-3">
                                            <div class="p-4">
                                                 <div class="float-right">
                                                     <span class="icon-users s-48"></span>
@@ -80,8 +73,8 @@
                                            </div>
                                        </div>
                                    </div>
-                                   <div class="col-lg-4">
-                                       <div class="white card">
+                                   <div class="col-lg-6">
+                                       <div class="bg-info text-white card">
                                            <div class="p-4">
                                                 <div class="float-right">
                                                     <span class="icon-calendar s-48"></span>
@@ -140,20 +133,15 @@
                             </div>
                         </div>
                    </div>
-                   <div class="tab-pane fade" id="kegiatan" role="tabpanel" aria-labelledby="v-pills-timeline-tab">
-
-                       <div class="row">
-                           <div class="col-md-12">
-                               <!-- The time line -->
-                               <ul class="timeline">
-                                   <!-- timeline time label -->
-                                   <li class="time-label">
-                      <span class="badge badge-danger r-3">
-                        10 Feb. 2014
-                      </span>
-                                   </li>
-                                   <!-- /.timeline-label -->
-                                   <!-- timeline item -->
+                    <div class="tab-pane fade" id="kegiatan" role="tabpanel" aria-labelledby="v-pills-timeline-tab">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="timeline">
+                                    <li class="time-label">
+                                        <span class="badge badge-danger r-3">
+                                            10 Feb. 2014
+                                        </span>
+                                    </li>
                                    <li>
                                        <i class="ion icon-envelope bg-primary"></i>
                                        <div class="timeline-item card">
@@ -205,9 +193,9 @@
                                    <!-- END timeline item -->
                                    <!-- timeline time label -->
                                    <li class="time-label">
-                      <span class="badge badge-success r-3">
-                        3 Jan. 2014
-                      </span>
+                                  <span class="badge badge-success r-3">
+                                    3 Jan. 2014
+                                  </span>
                                    </li>
                                    <!-- /.timeline-label -->
                                    <!-- timeline item -->

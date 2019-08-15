@@ -11,6 +11,7 @@ class Distribusi extends REST_Controller {
         $this->load->model("M_mapel");
         $this->load->model("M_guru");
         $this->load->model("M_kelas");
+        $this->load->model("M_ekskul");
     }
 
     function walikelas_get() {
@@ -69,6 +70,20 @@ class Distribusi extends REST_Controller {
             'mapel' => $mapel,
             'kelas' => $dataKelas,
             'guru' => $dataGuru,
+            'message' => "Proses berhasil",
+            'status' => TRUE
+        ], REST_Controller::HTTP_OK);
+    }
+
+    function pembinaekskul_get() {
+        $ekskul = $this->M_ekskul->getAllEkskul();
+        $guru = $this->M_guru->getAll();
+        $pembina = [];
+
+        $this->response([
+            'ekskul' => $ekskul,
+            'guru' => $guru,
+            'pembina' => $pembina,
             'message' => "Proses berhasil",
             'status' => TRUE
         ], REST_Controller::HTTP_OK);
