@@ -14,8 +14,12 @@
             <div class="row">
                 <ul class="nav responsive-tab nav-material nav-material-white" id="v-pills-tab">
                     <li>
-                        <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#dist">
-                            <i class="icon icon-home2"></i>Data</a>
+                        <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#data">
+                            <i class="icon icon-home2"></i>Data Pembina</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#tambah">
+                            <i class="icon icon-plus-circle mb-3"></i>Atur Pembina</a>
                     </li>
                 </ul>
             </div>
@@ -23,7 +27,7 @@
     </header>
     <div class="container-fluid relative animatedParent animateOnce">
         <div class="tab-content pb-3" id="v-pills-tabContent">
-            <div class="tab-pane animated fadeInUpShort show active" id="dist">
+            <div class="tab-pane animated fadeInUpShort show active" id="data">
                 <div class="row">
                     <div class="col-md-12">
                         <?php 
@@ -88,45 +92,67 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="aturPembina" tabindex="-1" role="dialog" aria-labelledby="aturPembina" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title pembina" id="exampleModalLabel">Atur Pembina - </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="#" method="post">
-                <div class="modal-body">
-                    <div class="form-row">
-                        <input type="hidden" name="id" id="idekskul">
-                        <div class="col-md-12">
-                            <div class="form-group mb-1">
-                                <label for="name" class="col-form-label s-12">GURU</label>
-                                <select name="guru" id="guru" class="form-control">
-                                    <option value="">-- Pilih Guru --</option>
-                                </select>
-                                <input type="checkbox" name="nm_guru" id="nm_guru" class="mt-2"> Pembina Luar Sekolah
+            <div class="tab-pane animated fadeInUpShort" id="tambah">
+                <div class="row my-3">
+                    <div class="col-md-7 offset-md-2">
+                        <form action="<?php echo site_url('distribusi/atur_pembina_ekskul') ?>" method="post">
+                            <div class="card no-b o-r">
+                                <div class="card-body">
+                                    <h5 class="card-title">Atur Pembina Ekskul</h5>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="form-group m-0">
+                                                <label for="name" class="col-form-label s-12">NAMA EKSKUL</label>
+                                                <select name="ekskul" class="custom-select select2 r-0 light s-12" required>
+                                                    <option value="">-- Pilih Ekskul --</option>
+                                                    <?php foreach($ekskul as $rowk) { ?>
+                                                    <option value="<?php echo $rowk->id_ekskul_url ?>"><?php echo $rowk->ekskul_nama ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-row">
+                                                <div class="form-group col-12 my-auto">
+                                                    <label for="desk" class="col-form-label s-12">PILIH PEMBINA</label>
+                                                    <br>
+                                                    <input type="radio" name="pembina" value="guru">Guru &nbsp;&nbsp;
+                                                    <input type="radio" name="pembina" value="lain_guru">Selain Guru
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="guru_pembina">
+                                            <div class="form-group m-0">
+                                                <label for="name" class="col-form-label s-12">GURU PEMBINA</label>
+                                                <select name="nama_pembina" class="custom-select select2 r-0 light s-12" required>
+                                                    <option value="">-- Pilih Guru --</option>
+                                                    <?php foreach($guru as $rowg) { ?>
+                                                    <option value="<?php echo $rowg->_id ?>"><?php echo $rowg->nama_guru ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="nama_pembina">
+                                            <div class="form-group m-0">
+                                                <label for="name" class="col-form-label s-12">NAMA PEMBINA</label>
+                                                <input type="text" name="nama_pembina" class="form-control r-0 light s-12">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <hr>
+                                            <button type="submit" class="btn btn-primary btn-sm"><i class="icon-save mr-2"></i>Save Data</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="name" class="col-form-label s-12">NAMA PEMBINA</label>
-                                <input type="text" name="nm_pembina" id="nm_pembina" class="form-control" disabled>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
@@ -134,17 +160,16 @@
 <?php echo $footer ?>
 
 <script type="text/javascript">
-    $('#nm_guru').click(function() {
-        if($(this).is(':checked')) {
-            $("#guru").prop("disabled", true);
-            $("#nm_pembina").prop("disabled", false);
-        } else {
-            $("#guru").prop("disabled", false);
-            $("#nm_pembina").attr("disabled", true);
+    $("#guru_pembina").hide();
+    $("#nama_pembina").hide();
+
+    $("input[name='pembina']").click(function() {
+        if($(this).val() == "guru") {
+            $("#guru_pembina").show();
+            $("#nama_pembina").hide();
+        } else if($(this).val() == "lain_guru") {
+            $("#guru_pembina").hide();
+            $("#nama_pembina").show();
         }
     });
-
-    function aturPembina() {
-        $('#aturPembina').modal('show');
-    }
 </script>

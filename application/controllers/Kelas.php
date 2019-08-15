@@ -78,6 +78,18 @@ class Kelas extends CI_Controller {
             ];
 
             if($session['session_role'] == "superadmin") {
+                // API Execute
+                $url = site_url().'/api/kelas/atur';
+                $res = $this->curl->get($url);
+
+                if($res->status == true) {
+                    $data['kelas'] = $res->kelas;
+                    $data['siswa'] = $res->siswa;
+                } else {
+                    $data['kelas'] = [];
+                    $data['siswa'] = [];
+                }
+
                 $data = [
                     "header" => $this->load->view("template/sadmin_header", $data, TRUE),
                     "footer" => $this->load->view("template/sadmin_footer", '', TRUE)
@@ -86,6 +98,18 @@ class Kelas extends CI_Controller {
                 $this->load->view("kesiswaan/atur_siswa", $data);
             } else if($session['session_role'] == "guru") {
                 if(strpos($session['session_status'], '2')) {
+                    // API Execute
+                    $url = site_url().'/api/kelas/atur';
+                    $res = $this->curl->get($url);
+
+                    if($res->status == true) {
+                        $data['kelas'] = $res->kelas;
+                        $data['siswa'] = $res->siswa;
+                    } else {
+                        $data['kelas'] = [];
+                        $data['siswa'] = [];
+                    }
+
                     $data = [
                         "header" => $this->load->view("template/guru_header", $data, TRUE),
                         "footer" => $this->load->view("template/guru_footer", '', TRUE)

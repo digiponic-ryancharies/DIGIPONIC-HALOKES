@@ -104,6 +104,7 @@
                 </a>
             </li>
             <?php
+                echo $this->load->view("template/menu_sadmin", '', TRUE);
                 echo $this->load->view("template/menu_kurikulum", '', TRUE);
                 echo $this->load->view("template/menu_kesiswaan", '', TRUE);
                 echo $this->load->view("template/menu_kepegawaian", '', TRUE);

@@ -14,11 +14,11 @@
             <div class="row">
                 <ul class="nav responsive-tab nav-material nav-material-white" id="v-pills-tab">
                     <li>
-                        <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#gkurikulum">
+                        <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#datatapel">
                             <i class="icon icon-home2"></i>Data Tapel</a>
                     </li>
                     <li>
-                        <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#tbh-gkurikulum">
+                        <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#tambahtapel">
                             <i class="icon icon-plus-circle mb-3"></i>Tambah Tapel</a>
                     </li>
                 </ul>
@@ -27,7 +27,7 @@
     </header>
     <div class="container-fluid relative animatedParent animateOnce">
         <div class="tab-content pb-3" id="v-pills-tabContent">
-            <div class="tab-pane animated fadeInUpShort show active" id="gkurikulum">
+            <div class="tab-pane animated fadeInUpShort show active" id="datatapel">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="card my-3 no-b">
@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane animated fadeInUpShort" id="tbh-gkurikulum">
+            <div class="tab-pane animated fadeInUpShort" id="tambahtapel">
                 <div class="row my-3">
                     <div class="col-md-7 offset-md-2">
                         <form action="<?php echo site_url('pengaturan/tambah_tapel') ?>" method="post">
