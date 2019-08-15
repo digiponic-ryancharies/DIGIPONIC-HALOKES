@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Localhost
+ Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 100136
+ Source Server Version : 100121
  Source Host           : localhost:3306
- Source Schema         : db_halokes
+ Source Schema         : db_halokes_ver1.0
 
  Target Server Type    : MySQL
- Target Server Version : 100136
+ Target Server Version : 100121
  File Encoding         : 65001
 
- Date: 10/08/2019 21:58:10
+ Date: 15/08/2019 13:56:10
 */
 
 SET NAMES utf8mb4;
@@ -72,21 +72,6 @@ CREATE TABLE `tbl_ekskul_pembina`  (
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
--- Table structure for tbl_ekskul_siswa
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_ekskul_siswa`;
-CREATE TABLE `tbl_ekskul_siswa`  (
-  `id_ekskul_siswa` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ekskul_siswa_url` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `id_sisiwa` int(11) NULL DEFAULT NULL,
-  `id_ekskul` int(11) NULL DEFAULT NULL,
-  `created_at` datetime(0) NULL DEFAULT NULL,
-  `modified_at` datetime(0) NULL DEFAULT NULL,
-  `status` int(1) NULL DEFAULT NULL,
-  PRIMARY KEY (`id_ekskul_siswa`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
-
--- ----------------------------
 -- Table structure for tbl_guru_jadwal_piket
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_guru_jadwal_piket`;
@@ -136,36 +121,46 @@ CREATE TABLE `tbl_guru_rpp`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_info_kalender`;
 CREATE TABLE `tbl_info_kalender`  (
-  `id_kalendar` int(11) NOT NULL AUTO_INCREMENT,
-  `id_kalendar_url` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `id_semester` int(11) NULL DEFAULT NULL,
-  `kalender_nama` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `id_kalender` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kalender_url` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `kalender_nama` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
   `modified_at` datetime(0) NULL DEFAULT NULL,
   `status` int(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`id_kalendar`) USING BTREE,
-  INDEX `kalender_smt`(`id_semester`) USING BTREE,
-  CONSTRAINT `kalender_smt` FOREIGN KEY (`id_semester`) REFERENCES `tbl_sys_semester` (`id_semester`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+  PRIMARY KEY (`id_kalender`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_info_kalender
+-- ----------------------------
+INSERT INTO `tbl_info_kalender` VALUES (2, 'YvcGW', 'Kalender Akademik 2017/2018', '2019-08-15 13:00:58', NULL, 1);
 
 -- ----------------------------
 -- Table structure for tbl_kalender_detail
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_kalender_detail`;
 CREATE TABLE `tbl_kalender_detail`  (
-  `id_kalendar_detail` int(11) NOT NULL AUTO_INCREMENT,
-  `id_kalendar_detail_url` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `id_kalendar` int(11) NOT NULL,
-  `kalendar_kegiatan` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `kalendar_tggl_awal` date NULL DEFAULT NULL,
-  `kalendar_tggl_akhir` date NULL DEFAULT NULL,
+  `id_kalender_detail` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kalender_detail_url` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `id_kalender` int(11) NOT NULL,
+  `id_tapel` int(11) NOT NULL,
+  `kalender_kegiatan` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `kalender_tggl_awal` date NULL DEFAULT NULL,
+  `kalender_tggl_akhir` date NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
   `modified_at` datetime(0) NULL DEFAULT NULL,
   `status` int(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`id_kalendar_detail`) USING BTREE,
-  INDEX `fk_tbl_kalender_detail`(`id_kalendar`) USING BTREE,
-  CONSTRAINT `fk_tbl_kalender_detail` FOREIGN KEY (`id_kalendar`) REFERENCES `tbl_info_kalender` (`id_kalendar`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+  PRIMARY KEY (`id_kalender_detail`) USING BTREE,
+  INDEX `fk_tbl_kalender_detail`(`id_kalender`) USING BTREE,
+  INDEX `fk_tbl_kalender_detail2`(`id_tapel`) USING BTREE,
+  CONSTRAINT `fk_tbl_kalender_detail` FOREIGN KEY (`id_kalender`) REFERENCES `tbl_info_kalender` (`id_kalender`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_tbl_kalender_detail2` FOREIGN KEY (`id_tapel`) REFERENCES `tbl_sys_tapel` (`id_tapel`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_kalender_detail
+-- ----------------------------
+INSERT INTO `tbl_kalender_detail` VALUES (2, 'HkomBdMQhpcJDmRaDQJY', 2, 1, 'Ujian Tengah Semester Ganjil 2018/2019', '2019-09-08', '2019-09-10', '2019-08-15 13:02:39', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tbl_kelas
@@ -868,20 +863,18 @@ CREATE TABLE `tbl_sys_tapel`  (
   `id_tapel` int(11) NOT NULL AUTO_INCREMENT,
   `id_tapel_url` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `tapel_nama` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `tapel_tahun` int(5) NULL DEFAULT NULL,
-  `tapel_deskripsi` longtext CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `tapel_tahun` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `tapel_aktif` int(11) NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
   `modified_at` datetime(0) NULL DEFAULT NULL,
   `status` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id_tapel`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_sys_tapel
 -- ----------------------------
-INSERT INTO `tbl_sys_tapel` VALUES (1, 'USWG1tuGJ7', '2017/2018', 2017, NULL, 1, '2019-06-28 18:16:54', NULL, 1);
-INSERT INTO `tbl_sys_tapel` VALUES (2, 'FASD5saDL2', '2018/2019', 2018, NULL, 0, '2019-08-02 19:51:42', NULL, 1);
+INSERT INTO `tbl_sys_tapel` VALUES (1, 'USWG1tuGJ7', '2017/2018', '2017', 1, '2019-06-28 18:16:54', NULL, 1);
 
 -- ----------------------------
 -- Table structure for tbl_ujian_jadwal
