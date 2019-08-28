@@ -72,3 +72,15 @@ CHANGELOG
 - Layout poin pelanggaran dan tambah pelanggaran
 - Layout prestasi siswa dan tambah prestasi siswa
 - Layout detail prestasi dan tambah kontributor prestasi
+
+15 Agustus 2019
+- API tampil dan atur pembina ekskul
+
+16 Agustus 2019
+- Layout changelog dan aktivitas user
+
+21 Agustus 2019
+- System changelog
+
+23 Agustus 2019
+- System aktivitas user

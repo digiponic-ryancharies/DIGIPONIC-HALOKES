@@ -4,6 +4,7 @@ class Guru extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("M_session");
+        $this->load->model("M_aktivitas");
         $this->load->library("Curl");
     }
 
@@ -153,6 +154,14 @@ class Guru extends CI_Controller {
 
                 $url = site_url().'/api/guru/tambah';
                 $res = $this->curl->post($url,$data);
+
+                if($res->status == TRUE) {
+                    $role = $session['session_role'];
+                    $uid = $session['session_userid'];
+                    $act = "insert";
+                    $desc = "<b>data guru</b>";
+                    $this->M_aktivitas->tambahAktivitasUser($role,$uid,$act,$desc);
+                }
 
                 $this->session->set_flashdata('do', "tambah_guru");
                 $this->session->set_flashdata('status', $res->status);

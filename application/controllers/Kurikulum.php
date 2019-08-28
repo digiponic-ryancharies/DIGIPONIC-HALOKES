@@ -5,6 +5,7 @@ class Kurikulum extends CI_Controller {
         parent::__construct();
         $this->load->library("Curl");
         $this->load->model("M_session");
+        $this->load->model("M_aktivitas");
     }
 
     function grup_kurikulum() {
@@ -133,6 +134,14 @@ class Kurikulum extends CI_Controller {
                     $url = site_url().'/api/kurikulum/tambah_kur';
                     $res = $this->curl->get($url,$data);
 
+                    if($res->status == TRUE) {
+                        $role = $session['session_role'];
+                        $uid = $session['session_userid'];
+                        $act = "insert";
+                        $desc = "<b>data grup kurikulum</b>";
+                        $this->M_aktivitas->tambahAktivitasUser($role,$uid,$act,$desc);
+                    }
+
                     $this->session->set_flashdata('do', "tambah_grupkur");
                     $this->session->set_flashdata('status', $res->status);
                     $this->session->set_flashdata('msg', (isset($res->message) ? $res->message : $res->error));
@@ -165,6 +174,14 @@ class Kurikulum extends CI_Controller {
 
                     $url = site_url().'/api/kurikulum/tambah_mapel';
                     $res = $this->curl->post($url,$data);
+
+                    if($res->status == TRUE) {
+                        $role = $session['session_role'];
+                        $uid = $session['session_userid'];
+                        $act = "insert";
+                        $desc = "<b>data grup mapel</b>";
+                        $this->M_aktivitas->tambahAktivitasUser($role,$uid,$act,$desc);
+                    }
 
                     $this->session->set_flashdata('do', "tambah_grupmapel");
                     $this->session->set_flashdata('status', $res->status);

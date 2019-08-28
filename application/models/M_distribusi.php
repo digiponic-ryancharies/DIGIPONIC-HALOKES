@@ -5,6 +5,19 @@ class M_distribusi extends CI_Model {
 		$this->load->database();
 	}
 
+	function getPembinaEkskul() {
+		$this->db->select("tep.id_ekskul_pembina_url AS _id,
+						   tme.ekskul_nama AS nama_ekskul,
+						   IFNULL(tep.pembina_nama, TRIM(CONCAT(IFNULL(tmg.guru_gelar_depan,''),' ',tmg.guru_nama,' ',IFNULL(tmg.guru_gelar_belakang,'')))) AS pembina,
+						   tep.pembina_tgl_mulai AS tgl_mulai,
+						   tep.status AS status");
+		$this->db->join("tbl_master_ekskul tme", "tep.id_ekskul = tme.id_ekskul");
+		$this->db->join("tbl_master_guru tmg", "tep.id_guru = tmg.id_guru", "left");
+
+		$sql = $this->db->get("tbl_ekskul_pembina tep");
+		return $sql->result_array();
+	}
+
 	function getAllWaliKelasAktif($ids) {
 		$this->db->select("tk.id_kelas_url AS _id,
 						   CONCAT(tk.kelas_tingkat, tk.kelas_abjad) AS nama_kelas,
@@ -40,6 +53,15 @@ class M_distribusi extends CI_Model {
 			return 0; // oke
 		} else {
 			return 1; // sudah ada
+		}
+
+		return 2; // something wrong
+	}
+
+	function tambahPembinaEkskul($data) {
+		$sql = $this->db->insert("tbl_ekskul_pembina", $data);
+		if($sql) { 
+			return 0; // oke
 		}
 
 		return 2; // something wrong

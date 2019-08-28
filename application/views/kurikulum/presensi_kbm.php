@@ -57,27 +57,20 @@
                     <div class="col-md-9">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card mt-3 no-b">
-                                    <div class="card-body">
-                                        <div class="card-title">Filter Presensi</div>
-                                        <form class="form-inline">
-                                            <label class="mr-2">Pilih Kelas</label>
-                                            <select class="form-control" name="kelas">
-                                                <option value="">-- Semua Kelas --</option>
-                                                <option>VII A</option>
-                                                <option>VII B</option>
-                                                <option>VII C</option>
-                                                <option>VII D</option>
-                                            </select>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
                                 <div class="card mt-3 mb-3 no-b">
                                     <div class="card-body">
                                         <div class="card-title">Presensi Hari Ini</div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <select class="form-control r-0 light s-12" name="kelas">
+                                                    <option value="">-- Semua Kelas --</option>
+                                                    <option>VII A</option>
+                                                    <option>VII B</option>
+                                                    <option>VII C</option>
+                                                    <option>VII D</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <table id="example2" class="table table-bordered table-hover data-tables" data-options='{"paging": false; "searching":false}'>
                                             <thead>
                                                 <tr>

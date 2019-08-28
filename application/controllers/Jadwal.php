@@ -5,6 +5,7 @@ class Jadwal extends CI_Controller {
         parent::__construct();
         $this->load->model("M_session");
         $this->load->model("M_jadwal");
+        $this->load->model("M_aktivitas");
         $this->load->library("curl"); // library curl
     }
 
@@ -139,6 +140,14 @@ class Jadwal extends CI_Controller {
 
 				$url = site_url()."/api/jadwal/aturjadwal";
 				$res = $this->curl->post($url,$data);
+
+				if($res->status == TRUE) {
+                    $role = $session['session_role'];
+                    $uid = $session['session_userid'];
+                    $act = "insert";
+                    $desc = "<b>atur jadwal mata pelajaran</b>";
+                    $this->M_aktivitas->tambahAktivitasUser($role,$uid,$act,$desc);
+                }
 
                 $this->session->set_flashdata('do', "atur_jadwal");
                 $this->session->set_flashdata('status', $res->status);

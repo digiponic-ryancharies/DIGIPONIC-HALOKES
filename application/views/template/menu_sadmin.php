@@ -6,7 +6,7 @@
     </a>
 </li>
 <li>
-    <a href="<?php echo site_url('activity/user') ?>">
+    <a href="<?php echo site_url('aktivitas/user') ?>">
     <i class="icon icon-user-circle blue-text s-18"></i> 
         <span>Aktivitas User</span>
     </a>

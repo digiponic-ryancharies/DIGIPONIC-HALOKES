@@ -9,6 +9,7 @@ class Distribusi extends CI_Controller {
         $this->load->model("M_kelas");
         $this->load->model("M_guru");
         $this->load->model("M_ekskul");
+        $this->load->model("M_aktivitas");
     }
 
     function wali_kelas() {
@@ -256,6 +257,14 @@ class Distribusi extends CI_Controller {
                     $url = site_url().'/api/dist/atur_wakel';
                     $res = $this->curl->post($url,$data);
 
+                    if($res->status == TRUE) {
+                        $role = $session['session_role'];
+                        $uid = $session['session_userid'];
+                        $act = "insert";
+                        $desc = "<b>atur wali kelas</b>";
+                        $this->M_aktivitas->tambahAktivitasUser($role,$uid,$act,$desc);
+                    }
+
                     $this->session->set_flashdata('do', "atur_wakel");
                     $this->session->set_flashdata('status', $res->status);
                     $this->session->set_flashdata('msg', $res->message);
@@ -290,10 +299,67 @@ class Distribusi extends CI_Controller {
                     $url = site_url().'/api/dist/atur_guruajar';
                     $res = $this->curl->post($url,$data);
 
+                    if($res->status == TRUE) {
+                        $role = $session['session_role'];
+                        $uid = $session['session_userid'];
+                        $act = "insert";
+                        $desc = "<b>atur guru pengajar</b>";
+                        $this->M_aktivitas->tambahAktivitasUser($role,$uid,$act,$desc);
+                    }
+
                     $this->session->set_flashdata('do', "atur_guruajar");
                     $this->session->set_flashdata('status', $res->status);
                     $this->session->set_flashdata('msg', (isset($res->message) ? $res->message : $res->error));
                     redirect("distribusi/guru_pengajar");
+                }
+            }
+        }
+    }
+
+    function atur_pembina_ekskul() {
+        $session = $this->M_session->get_session();
+        if (!$session['session_userid'] && !$session['session_role']) {
+            /*$data['message'] = "<p>The page you requested was not found.</p>";
+            $this->load->view("errors/html/error_404", $data);*/
+            redirect("login");
+        } else {
+            $data = [
+                "userid" => $session['session_userid'],
+                "userstts" => $session['session_status'],
+                "usernama" => $session['session_nama']
+            ];
+
+            if($session['session_role'] == "guru" || $session['session_role'] == "superadmin") {
+                if(strpos($session['session_status'], '1')) {
+                    if($this->input->post('pembina') == "guru") {
+                        $id_guru = $this->input->post("nama_pembina_g");
+                        $nm_pembina = NULL;
+                    } else if($this->input->post('pembina') == "lain_guru") {
+                        $id_guru = NULL;
+                        $nm_pembina = $this->input->post("nama_pembina");
+                    }
+
+                    $data = [
+                        "id_ekskul" => $this->input->post('ekskul'),
+                        "id_guru" => $id_guru,
+                        "nama_pembina" => $nm_pembina,
+                    ];
+
+                    $url = site_url().'/api/dist/pembina_ekskul/tambah';
+                    $res = $this->curl->post($url,$data);
+
+                    if($res->status == TRUE) {
+                        $role = $session['session_role'];
+                        $uid = $session['session_userid'];
+                        $act = "insert";
+                        $desc = "<b>atur pembina ekskul</b>";
+                        $this->M_aktivitas->tambahAktivitasUser($role,$uid,$act,$desc);
+                    }
+
+                    $this->session->set_flashdata('do', "atur_pembina");
+                    $this->session->set_flashdata('status', $res->status);
+                    $this->session->set_flashdata('msg', (isset($res->message) ? $res->message : $res->error));
+                    redirect("distribusi/pembina_ekskul");
                 }
             }
         }

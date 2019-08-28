@@ -78,7 +78,7 @@ class Distribusi extends REST_Controller {
     function pembinaekskul_get() {
         $ekskul = $this->M_ekskul->getAllEkskul();
         $guru = $this->M_guru->getAll();
-        $pembina = [];
+        $pembina = $this->M_distribusi->getPembinaEkskul();
 
         $this->response([
             'ekskul' => $ekskul,
@@ -139,6 +139,34 @@ class Distribusi extends REST_Controller {
                 'message' => "<strong>Gagal</strong>, data sudah tersedia di database",
                 'status' => FALSE
             ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
+        } else {
+            $this->response([
+                'message' => "<strong>Gagal</strong>, terjadi kesalahan pada pengaturan",
+                'status' => FALSE
+            ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    function aturpembina_post() {
+        $data = [
+            "id_ekskul_pembina" => $this->M_app->getLatestid('id_ekskul_pembina', 'tbl_ekskul_pembina'),
+            "id_ekskul_pembina_url" => $this->M_app->randomString(15),
+            "id_ekskul" => $this->M_ekskul->getEkskulIDFromURL($this->post('id_ekskul')),
+            "id_guru" => $this->M_guru->getGuruIDFromURL($this->post('id_guru')),
+            "pembina_nama" => $this->post('nama_pembina'),
+            "pembina_tgl_mulai" => $this->M_app->dateNow(),
+            "pembina_tgl_selesai" => NULL,
+            "created_at" => $this->M_app->datetimeNow(),
+            "status" => 1
+        ];
+
+        $proc = $this->M_distribusi->tambahPembinaEkskul($data);
+
+        if($proc == 0) {
+            $this->response([
+                'message' => "<strong>Berhasil</strong>, atur pembina berhasil dilakukan",
+                'status' => TRUE
+            ], REST_Controller::HTTP_OK);
         } else {
             $this->response([
                 'message' => "<strong>Gagal</strong>, terjadi kesalahan pada pengaturan",

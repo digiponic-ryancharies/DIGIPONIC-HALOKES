@@ -5,6 +5,7 @@ class Siswa extends CI_Controller {
         parent::__construct();
         $this->load->model("M_session");
         $this->load->model("M_siswa");
+        $this->load->model("M_aktivitas");
         $this->load->library("Curl");
     }
 
@@ -181,6 +182,14 @@ class Siswa extends CI_Controller {
 
                     $url = site_url().'/api/siswa/aktif/tambah';
                     $res = $this->curl->post($url,$data);
+
+                    if($res->status == TRUE) {
+                        $role = $session['session_role'];
+                        $uid = $session['session_userid'];
+                        $act = "insert";
+                        $desc = "<b>data siswa aktif</b>";
+                        $this->M_aktivitas->tambahAktivitasUser($role,$uid,$act,$desc);
+                    }
 
                     $this->session->set_flashdata('do', "tambah_siswa");
                     $this->session->set_flashdata('status', $res->status);

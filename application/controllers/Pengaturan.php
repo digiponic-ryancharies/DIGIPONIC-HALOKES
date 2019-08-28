@@ -5,6 +5,7 @@ class Pengaturan extends CI_Controller {
         parent::__construct();
         $this->load->library("Curl");
         $this->load->model("M_session");
+        $this->load->model("M_aktivitas");
     }
 
     function tapel() {

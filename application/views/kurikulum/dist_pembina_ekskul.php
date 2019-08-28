@@ -36,7 +36,7 @@
                             $msg = $this->session->flashdata("msg");
 
                             if(isset($do)) {
-                                if($do == "atur_jadwal") {
+                                if($do == "atur_pembina") {
                                     if($stts == true) {
                                         echo '
                                             <div class="alert alert-info alert-dismissible mt-3" role="alert">
@@ -75,16 +75,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $no=1; foreach($pembina as $rowp) { ?>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?php echo $no ?></td>
+                                            <td><?php echo $rowp->nama_ekskul ?></td>
+                                            <td><?php echo $rowp->pembina ?></td>
+                                            <td><?php echo $rowp->tgl_mulai ?></td>
+                                            <td><?php echo ($rowp->status == 1 ? "Aktif" : "Tidak Aktif") ?></td>
                                             <td>
-                                                <a href="#" class="btn btn-primary btn-xs" onclick="aturPembina()">Atur</a>
+                                                <a href="#" class="btn btn-primary btn-xs" onclick="aturPembina(<?php echo $rowp->_id ?>)">Atur</a>
                                             </td>
                                         </tr>
+                                        <?php $no++; } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -126,7 +128,7 @@
                                         <div class="col-md-6" id="guru_pembina">
                                             <div class="form-group m-0">
                                                 <label for="name" class="col-form-label s-12">GURU PEMBINA</label>
-                                                <select name="nama_pembina" class="custom-select select2 r-0 light s-12" required>
+                                                <select name="nama_pembina_g" class="custom-select select2 r-0 light s-12">
                                                     <option value="">-- Pilih Guru --</option>
                                                     <?php foreach($guru as $rowg) { ?>
                                                     <option value="<?php echo $rowg->_id ?>"><?php echo $rowg->nama_guru ?></option>

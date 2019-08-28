@@ -5,6 +5,7 @@ class Ekstrakurikuler extends CI_Controller {
         parent::__construct();
         $this->load->library("Curl");
         $this->load->model("M_session");
+        $this->load->model("M_aktivitas");
     }
 
     function index() {
@@ -126,6 +127,14 @@ class Ekstrakurikuler extends CI_Controller {
                 $url = site_url().'/api/ekskul/tambah';
                 $res = $this->curl->post($url,$data);
 
+                if($res->status == TRUE) {
+                    $role = $session['session_role'];
+                    $uid = $session['session_userid'];
+                    $act = "insert";
+                    $desc = "<b>ekstakurikuler</b>";
+                    $this->M_aktivitas->tambahAktivitasUser($role,$uid,$act,$desc);
+                }
+
                 $this->session->set_flashdata('do', "tambah_ekskul");
                 $this->session->set_flashdata('status', $res->status);
                 $this->session->set_flashdata('msg', (isset($res->message) ? $res->message : $res->error));
@@ -140,6 +149,14 @@ class Ekstrakurikuler extends CI_Controller {
 
                     $url = site_url().'/api/ekskul/tambah';
                     $res = $this->curl->post($url,$data);
+
+                    if($res->status == TRUE) {
+                        $role = $session['session_role'];
+                        $uid = $session['session_userid'];
+                        $act = "insert";
+                        $desc = "<b>atur wali kelas</b>";
+                        $this->M_aktivitas->tambahAktivitasUser($role,$uid,$act,$desc);
+                    }
 
                     $this->session->set_flashdata('do', "tambah_ekskul");
                     $this->session->set_flashdata('status', $res->status);

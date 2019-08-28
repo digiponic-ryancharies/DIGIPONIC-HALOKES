@@ -6,6 +6,7 @@ class Mapel extends CI_Controller {
         $this->load->library("Curl");
         $this->load->model("M_session");
         $this->load->model("M_kurikulum");
+        $this->load->model("M_aktivitas");
     }
 
     function index() {
@@ -91,6 +92,14 @@ class Mapel extends CI_Controller {
 
                     $url = site_url().'/api/mapel/tambah';
                     $res = $this->curl->post($url,$data);
+
+                    if($res->status == TRUE) {
+                        $role = $session['session_role'];
+                        $uid = $session['session_userid'];
+                        $act = "insert";
+                        $desc = "<b>data mapel</b>";
+                        $this->M_aktivitas->tambahAktivitasUser($role,$uid,$act,$desc);
+                    }
 
                     $this->session->set_flashdata('do', "tambah_mapel");
                     $this->session->set_flashdata('status', $res->status);

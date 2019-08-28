@@ -5,6 +5,7 @@ class Presensi extends CI_Controller {
         parent::__construct();
         $this->load->model("m_app");
         $this->load->model("M_session");
+        $this->load->model("M_aktivitas");
     }
 
     function kbm() {

@@ -61,6 +61,7 @@ $route['api/dist/atur_wakel'] = 'api/distribusi/aturwakel';
 $route['api/dist/guru_ajar'] = 'api/distribusi/guruajar';
 $route['api/dist/atur_guruajar'] = 'api/distribusi/aturguruajar';
 $route['api/dist/pembina_ekskul'] = 'api/distribusi/pembinaekskul';
+$route['api/dist/pembina_ekskul/tambah'] = 'api/distribusi/aturpembina';
 $route['api/kelas/atur'] = 'api/kelas/kelasSiswa';
 
 // View Route
