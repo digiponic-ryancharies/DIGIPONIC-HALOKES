@@ -67,6 +67,9 @@ class Jadwal extends CI_Controller {
 				];
 
 				// API Execute
+                $url = site_url().'/api/kalender_ak/all';
+                $res = $this->curl->get($url);
+                $data['kalender'] = ($res->status == true ? $res->data : []); 
 
 			    $this->load->view("kurikulum/jadwal_kalender", $data);
 			} else if($session['session_role'] == "guru") {
@@ -82,7 +85,7 @@ class Jadwal extends CI_Controller {
 		}
     }
 
-    function kalender_ak_detail() {
+    function kalender_ak_detail($id) {
     	$session = $this->M_session->get_session();
 		if (!$session['session_userid'] && !$session['session_role']) {
 			/*$data['message'] = "<p>The page you requested was not found.</p>";
@@ -102,6 +105,9 @@ class Jadwal extends CI_Controller {
 				];
 
 				// API Execute
+                $url = site_url().'/api/kalender_ak/detail/'.$id;
+                $res = $this->curl->get($url);
+                $data['kalender'] = ($res->status == true ? $res->data : []); 
 
 			    $this->load->view("kurikulum/jadwal_kalender_detail", $data);
 			} else if($session['session_role'] == "guru") {

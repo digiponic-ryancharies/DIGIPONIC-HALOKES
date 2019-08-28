@@ -14,7 +14,7 @@ class Kalender_ak extends REST_Controller {
         $ids = $this->M_app->getSemesterActive();
         $kalender = $this->M_kalender->getKalenderAll($ids);
 
-        $kalender = ($kalender->num_rows() != 0 ? $kalender->result_array() : [s]);
+        $kalender = ($kalender->num_rows() != 0 ? $kalender->result_array() : []);
 
     	$this->response([
             'data' => $kalender,

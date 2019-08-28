@@ -60,15 +60,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $no=1; foreach($kalender as $row) { ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>08-09-2019</td>
-                                    <td>10-09-2019</td>
-                                    <td>Ujian Tengah Semester Ganjil 2018/2019</td>
+                                    <td><?php echo $no ?></td>
+                                    <td><?php echo $row->tgl_awal ?></td>
+                                    <td><?php echo $row->tgl_akhir ?></td>
+                                    <td><?php echo $row->kegiatan ?></td>
                                     <td>
-                                        
+                                        <button class="btn btn-info">Edit</button>
+                                        <button class="btn btn-danger">Hapus</button>
                                     </td>
                                 </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>

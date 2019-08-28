@@ -60,33 +60,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $no=1; foreach($kalender as $row) { ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Kalender Akademik 2017/2018 Ganjil</td>
-                                    <td>2017/2018 Smt Ganjil</td>
-                                    <td>Nonaktif</td>
-                                    <td>
-                                        <a href="<?php echo site_url('jadwal/kalender_ak/detail') ?>" class="btn btn-primary btn-xs">Detail</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Kalender Akademik 2017/2018 Genap</td>
-                                    <td>2017/2018 Smt Genap</td>
-                                    <td>Nonaktif</td>
-                                    <td>
-                                        <a href="<?php echo site_url('jadwal/kalender_ak/detail') ?>" class="btn btn-primary btn-xs">Detail</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Kalender Akademik 2018/2019 Ganjil</td>
-                                    <td>2018/2019 Smt Ganjil</td>
+                                    <td><?php echo $no; ?></td>
+                                    <td><?php echo $row->kalender_nama ?></td>
+                                    <td><?php echo $row->tapel." ".$row->semester ?></td>
                                     <td>Aktif</td>
                                     <td>
-                                        <a href="<?php echo site_url('jadwal/kalender_ak/detail') ?>" class="btn btn-primary btn-xs">Detail</a>
+                                        <a href="<?php echo site_url('jadwal/kalender_ak_detail/'.$row->_id) ?>" class="btn btn-primary btn-xs">Detail</a>
                                     </td>
                                 </tr>
+                                <?php $no++; } ?>
                             </tbody>
                         </table>
                     </div>

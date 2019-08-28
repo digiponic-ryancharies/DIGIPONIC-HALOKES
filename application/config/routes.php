@@ -66,4 +66,4 @@ $route['api/kelas/atur'] = 'api/kelas/kelasSiswa';
 
 // View Route
 $route['presensi/ekskul/detail'] = 'presensi/ekskul_detail';
-$route['jadwal/kalender_ak/detail'] = 'jadwal/kalender_ak_detail';
+//$route['jadwal/kalender_ak/detail/(:any)'] = 'jadwal/kalender_ak_detail/(:any)';
