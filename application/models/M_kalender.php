@@ -37,4 +37,10 @@ class M_kalender extends CI_Model {
 
 		return $sql;
 	}
+
+	function tambahKalender($data){
+        $sql = $this->db->insert("tbl_info_kalender", $data);
+        return $sql;
+    
+	}
 }
