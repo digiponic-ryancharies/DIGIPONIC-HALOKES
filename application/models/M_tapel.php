@@ -12,6 +12,9 @@ class M_jadwal extends CI_Model {
 		return $sql;
 	}
 
-	
+	function tambahKalender($data){
+        $sql = $this->db->insert("tbl_sys_tapel", $data);
+        return $sql;
+	}
 }
 ?>
