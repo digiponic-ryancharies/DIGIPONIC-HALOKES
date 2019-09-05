@@ -6,7 +6,7 @@ class M_semester extends CI_Model {
 	}
 
 	function getSemesterAll() {
-		$this->db->select("id_semester_url as _id, semeseter_nama as smt_nama, status as smt_status");
+		$this->db->select("id_semester_url as _id, semester_nama as smt_nama, status as smt_status");
 		$sql = $this->db->get("tbl_sys_semester");
 
 		return $sql;

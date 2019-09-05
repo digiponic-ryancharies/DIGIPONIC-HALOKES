@@ -8,11 +8,13 @@ class Semester extends REST_Controller {
         parent::__construct();
         $this->load->model("M_app");
         $this->load->model("M_semester");
+        $this->load->model("M_tapel");
+           
     }
 
     function all_get() {
         $tapel = $this->M_tapel->getTapelAll(1);
-        $semester = $this->M_semester->
+        $semester = $this->M_semester->getSemesterAll();
 
         $tapel = ($tapel->num_rows() != 0 ? $tapel->result_array() : ['Empty']);
         $semester = ($semester->num_rows() != 0 ? $semester->result_array() : ['Empty']);
