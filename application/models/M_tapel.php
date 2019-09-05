@@ -1,13 +1,13 @@
 <?php
-class M_jadwal extends CI_Model {
+class M_tapel extends CI_Model {
 	public function __construct() {
 		parent::__construct();
 		$this->load->database();
 	}
 
-	function getTapelAll(){
-		$this->getTapelAll(0);
-	}
+	// function getTapelAll(){
+	// 	$this->getTapelAll(0);
+	// }
 
 	function getTapelAll($isSem) {
 		if($isSem){
@@ -22,7 +22,7 @@ class M_jadwal extends CI_Model {
 		return $sql;
 	}
 
-	function tambahKalender($data){
+	function tambahTapel($data){
         $sql = $this->db->insert("tbl_sys_tapel", $data);
         return $sql;
 	}

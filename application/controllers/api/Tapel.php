@@ -11,7 +11,7 @@ class Tapel extends REST_Controller {
     }
 
      function all_get() {
-        $tapel = $this->M_tapel->getTapelAll();
+        $tapel = $this->M_tapel->getTapelAll(0);
 
         $tapel = ($tapel->num_rows() != 0 ? $tapel->result_array() : ['Empty']);
 
@@ -27,8 +27,8 @@ class Tapel extends REST_Controller {
             "id_tapel_url" => $this->M_app->randomString(10), 
             "tapel_nama" => $this->post("tapel_nama"),
             "tapel_tahun" => $this->post("tapel_tahun"),
-            "tapel_deskripsi" => $this->post("tapel_deskripsi"),
-            "tapel_aktif" => $this->post("tapel_aktif");
+            
+            "tapel_aktif" => $this->post("tapel_aktif")
         ];
 
         $proc = $this->M_tapel->tambahTapel($data);

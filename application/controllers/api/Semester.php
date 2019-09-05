@@ -29,7 +29,7 @@ class Semester extends REST_Controller {
             "id_semester_url" => $this->M_app->randomString(20),
             "id_tapel" => $this->post("id_tapel"),
             "semester_nama" => $this->post("smt_nama"),
-            "semester_aktif" => 0;
+            "semester_aktif" => 0
         ];
 
         $proc = $this->M_semester->tambahSemester($data); 
