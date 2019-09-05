@@ -38,7 +38,7 @@ class Kalender_ak extends REST_Controller {
     function tambah_post() {
         $data = [
             "id_semester" => "",
-            "kalender_nama" => $this->post("kalender_nama");
+            "kalender_nama" => $this->post("kalender_nama")
         ];
 
         $proc = $this->M_kalender->tambahKalender($data);
@@ -59,10 +59,10 @@ class Kalender_ak extends REST_Controller {
         $id_kalender = $this->M_kalender->getIdKalenderByURL($kalenderUrl);
 
         $data = [
-            "id_kalender" => $id_kalender;
-            "kegiatan" => $this->post("kegiatan"),
-            "tgl_awal" => $this->post("tgl_awal"),
-            "tgl_akhir" => $this->post("tgl_akhir");
+            "id_kalender" => $id_kalender,
+            "kalender_kegiatan" => $this->post("kegiatan"),
+            "kalender_tggl_awal" => $this->post("tgl_awal"),
+            "kalender_tggl_akhir" => $this->post("tgl_akhir")
         ];
 
         $proc = $this->M_kalender->tambahDetailKalender($data);
