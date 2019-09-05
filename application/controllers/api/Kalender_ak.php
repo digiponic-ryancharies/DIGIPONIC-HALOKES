@@ -55,29 +55,4 @@ class Kalender_ak extends REST_Controller {
         }
     }
 
-    function tambah_detail_post($kalenderUrl){
-        $id_kalender = $this->M_kalender->getIdKalenderByURL($kalenderUrl);
-
-        $data = [
-            "id_kalender" => $id_kalender;
-            "kegiatan" => $this->post("kegiatan"),
-            "tgl_awal" => $this->post("tgl_awal"),
-            "tgl_akhir" => $this->post("tgl_akhir");
-        ];
-
-        $proc = $this->M_kalender->tambahDetailKalender($data);
-        if($proc == TRUE) {
-            $this->response([
-                'message' => "<strong>Berhasil</strong>, tambah data siswa berhasil dilakukan",
-                'status' => TRUE
-            ], REST_Controller::HTTP_OK);
-        } else {
-            $this->response([
-                'message' => "<strong>Gagal</strong>, terjadi kesalahan pada tambah data",
-                'status' => FALSE
-            ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    
 }

@@ -11,12 +11,13 @@ class Tapel extends REST_Controller {
     }
 
      function all_get() {
-        $tapel = $this->M_tapel->getTapelAll();
+        $ids = $this->M_app->getSemesterActive();
+        $kalender = $this->M_kalender->getKalenderAll($ids);
 
-        $tapel = ($tapel->num_rows() != 0 ? $tapel->result_array() : ['Empty']);
+        $kalender = ($kalender->num_rows() != 0 ? $kalender->result_array() : ['Empty']);
 
         $this->response([
-            'data' => $tapel,
+            'data' => $kalender,
             'message' => "Proses berhasil",
             'status' => TRUE
         ], REST_Controller::HTTP_OK);
@@ -44,6 +45,4 @@ class Tapel extends REST_Controller {
             ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-
-
 }

@@ -5,10 +5,9 @@ class M_jadwal extends CI_Model {
 		$this->load->database();
 	}
 
-	function getTapelAll() {
-		$this->db->select("id_tapel_url as _id, tapel_nama, status as tapel_status");
-		$this->db->where("tapel_aktif",1);
-		$sql = $this->db->get("tbl_sys_tapel");
+	function getTapelAll($aktif) {
+		
+		$sql = $this->db->get("tbl_mapel_jadwal tmj");
 
 		return $sql;
 	}
