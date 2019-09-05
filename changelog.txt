@@ -73,8 +73,13 @@ CHANGELOG
 - Layout prestasi siswa dan tambah prestasi siswa
 - Layout detail prestasi dan tambah kontributor prestasi
 
+14 Agustus 2019
+- API Tampil Kalender Detail
+- API Tampil Kalender
+
 15 Agustus 2019
 - API tampil dan atur pembina ekskul
+- Perubahan Kata pada Modal yang memiliki kata "Kalendar" -> "Kalender"
 
 16 Agustus 2019
 - Layout changelog dan aktivitas user
@@ -84,3 +89,13 @@ CHANGELOG
 
 23 Agustus 2019
 - System aktivitas user
+
+4 September 2019
+- API Tambah Kalender
+- API Tambah Detail Kalender + Routing
+- API Tambah Tahun Pelajaran
+- API Tampil Tahun Pelajaran
+
+5 September 2019
+- API Tambah Semester
+- API Tampil Semester

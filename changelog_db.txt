@@ -37,3 +37,6 @@ CHANGELOG DB
 9 Agustus 2019
 (-) tbl_kalender_detail - field - id_semester
 (+) tbl_info_kalender - field - id_semester
+
+15 Agustus 2019
+Pergantian Semua Kata Kalendar -> Kalender
