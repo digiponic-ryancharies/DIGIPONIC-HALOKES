@@ -38,9 +38,21 @@ class M_kalender extends CI_Model {
 		return $sql;
 	}
 
+	function getIdKalenderByURL($kalenderUrl){
+		$this->db->select("id_kalender");
+		$this->db->where("id_kalender_url", $kalenderUrl);
+		$sql = $this->db->get("tb_info_kalender");
+
+		return $sql->row()->id_kalender;
+	}
+
 	function tambahKalender($data){
         $sql = $this->db->insert("tbl_info_kalender", $data);
         return $sql;
-    
+	}
+
+	function tambahDetailKalender($data){
+		$sql = $this->db->insert("tbl_kalender_detail", $data)
+		return $sql;
 	}
 }
